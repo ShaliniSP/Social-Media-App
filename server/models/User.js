@@ -23,9 +23,13 @@ const UserSchema = new mongoose.Schema({
         default: '',
     },
     propic: {
-        type: String,
-        default: '',
-    },    
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Media',
+    },   
+    posts: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Post',
+    }, 
 });
 
 UserSchema.methods.generateHash = (password) => 

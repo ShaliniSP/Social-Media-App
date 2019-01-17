@@ -1,13 +1,14 @@
 const express = require('express');
 const fs = require('fs');
-
 const mongoose = require('mongoose');
 const path = require('path');
+const cors = require('cors');
+const morgan = require('morgan');
 
 const config = require('../config/config');
 
 const port  = config.RESTAPIport;
-const cors = require('cors');
+
 
 // Configuration
 // =========================================================================
@@ -21,8 +22,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
+// log requests to console
+app.use(morgan('dev'));
+
+// log all requests to access.log
+app.use(morgan('common', {
+  stream: fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+}));
+
 // API routes
-// require('./routes')(app);
+require('./routes')(app);
 
 app.use(express.static(path.resolve(__dirname, '../build')));
 
