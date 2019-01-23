@@ -2,7 +2,7 @@ const User = require('../../models/User');
 const UserSession = require('../../models/UserSession');
 
 module.exports = (app) => {
-    //SignUp
+    // SignUp
     app.post('/api/account/signup', (req, res, next) => {
         console.log("mhjjhfkjh");
         const body = req.body;
