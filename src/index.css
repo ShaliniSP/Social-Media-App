@@ -12,3 +12,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.post {
+  position: absolute;
+  top: 50px;
+  left: 100px;
+}
+
+img {
+  length: 250px;
+  height: 250px;
+}
+div{
+  background-color: #ebf2f9;
+  padding: 10px;
+}
+
+.likes{
+  color: #34A853;
+}
+
+.button{
+  padding-top: 5px;
+  padding-right: 10px;
+  length: 25px;
+  height: 25px;
+}
