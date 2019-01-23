@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import leaf from './leaf.jpg';
+import React from 'react';
+//import leaf from './leaf.jpg';
 import up from './up.jpg';
 import dog from './dog.jpg';
 import disability from './disability.jpg';
@@ -8,7 +8,7 @@ import environment from './environment.jpeg';
 import plants from './plants.jpg';
 import './App.css';
 //import Rectangle from 'react-shapes';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 
 class App extends React.Component {
 
