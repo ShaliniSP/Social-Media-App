@@ -1,45 +1,33 @@
 import React, { Component } from 'react';
 // import logo from './../logo.svg';
 import './App.css';
-import { Grid, Row, Col, Carousel } from 'react-bootstrap';
+// import { Grid, Row, Col, Carousel } from 'react-bootstrap';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Grid>
-          <Row>
-            <Col xs={0} md={4}>
-            </Col>
-            <Col xs={12} md={4}>
-              <Carousel>
-                <Carousel.Item>
-                  <img width={900} height={500} alt="900x500" src="/carousel.png" />
-                  <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                  </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                  <img width={900} height={500} alt="900x500" src="/carousel.png" />
-                  <Carousel.Caption>
-                    <h3>Second slide label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                  </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                  <img width={900} height={500} alt="900x500" src="/carousel.png" />
-                  <Carousel.Caption>
-                    <h3>Third slide label</h3>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                  </Carousel.Caption>
-                </Carousel.Item>
-              </Carousel>
-            </Col>
-            <Col xs={0} md={4}>
-            </Col>
-          </Row>
-        </Grid>
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100" src="carousel.png" alt="First slide"></img>
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="carousel.png" alt="Second slide"></img>
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="" alt="Third slide"></img>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
       </div>
     );
   }
