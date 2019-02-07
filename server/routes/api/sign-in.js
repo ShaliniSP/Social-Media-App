@@ -4,20 +4,19 @@ const UserSession = require('../../models/UserSession');
 module.exports = (app) => {
     // SignUp
     app.post('/api/account/signup', (req, res, next) => {
-        console.log("mhjjhfkjh");
         const body = req.body;
         console.log(body);
         
         const {
-            password
+            password,
         } = body;
         
         const {
-            name
+            name,
         } = body;
         
         let {
-            email
+            email,
         } = body;
     
         if (!email) {
