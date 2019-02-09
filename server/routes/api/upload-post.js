@@ -8,7 +8,10 @@ module.exports = (app) => {
             actId,
             timestamp,
             caption,
+<<<<<<< HEAD
             category,
+=======
+>>>>>>> c335cf37bde9ee061c3c1df3038cfc2d971ccf9f
             imgUrl,
         } = req.body;
 
@@ -37,7 +40,10 @@ module.exports = (app) => {
                 newPost.timestamp = timestamp;
                 newPost.caption = caption;
                 newPost.imgUrl = imgUrl;
+<<<<<<< HEAD
                 newPost.category = category;
+=======
+>>>>>>> c335cf37bde9ee061c3c1df3038cfc2d971ccf9f
 
                 newPost.save((err, post) => {
                     console.log(err, post);
@@ -52,4 +58,8 @@ module.exports = (app) => {
             }
         });        
     });
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> c335cf37bde9ee061c3c1df3038cfc2d971ccf9f
