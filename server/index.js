@@ -9,7 +9,6 @@ const config = require('../config/config');
 
 const port  = config.RESTAPIport;
 
-
 // Configuration
 // =========================================================================
 
@@ -41,7 +40,7 @@ app.use(express.static(path.resolve(__dirname, '../build')));
 // });
 
 app.get('*', function(req, res) {
-  res.status(200).send({'message': 'Done'});
+  res.status(200).send({ message: 'Done' });
 });
 
 app.listen(port, '0.0.0.0', (err) => {

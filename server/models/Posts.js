@@ -10,7 +10,7 @@ const PostSchema = new mongoose.Schema({
         ref: 'Media',
     },
     comments: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: [mongoose.Schema.Types.ObjectId],
         ref: 'Comment',    
     },
     upvotes: {
@@ -21,10 +21,30 @@ const PostSchema = new mongoose.Schema({
         type: [mongoose.Schema.Types.ObjectId],
         ref: 'User',
     },
-    timestamp: {
+    timeStamp: {
         type: Date,
         default: Date.now(),
     },
+    category: {
+        type: String,
+        default: 'All',
+    },
+    caption: {
+        type: String,
+        default: '',
+    },
+    actId: {
+        type: Number,
+        default: 0,
+    },
+    imgUrl: {
+        type: String,
+        default: '',
+    },
+    timestamp: {
+        type: String,
+        default: '',
+    },    
 });
 
 module.exports = mongoose.model('Post', PostSchema);
