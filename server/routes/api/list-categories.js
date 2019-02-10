@@ -71,7 +71,7 @@ module.exports = (app) => {
                 });
             } 
             else {
-                if(categories.length != 0) {
+                if(categories.length !== 0) {
                     return res.status(400).send({
                         message: 'Bad Request',
                     });
@@ -87,7 +87,7 @@ module.exports = (app) => {
                             message: 'Error: Server Error',
                         });
                     } else {
-                        return res.sendStatus(200);
+                        return res.sendStatus(202);
                     }
                 });
             }
@@ -105,7 +105,7 @@ module.exports = (app) => {
                 });
             }
             else {
-                if(category != undefined) {
+                if(category) {
                     console.log('Category:', category);
                     category.set('isDeleted', true);
                     console.log(category);
@@ -116,7 +116,7 @@ module.exports = (app) => {
                                 message: 'Error: Server Error',
                             });
                         } else {
-                            return res.sendStatus(200);
+                            return res.sendStatus(201);
                         }
                     });
                 }
