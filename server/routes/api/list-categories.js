@@ -3,15 +3,16 @@ const Post = require('../../models/Posts');
 
 //NEED TO CHECK FOR IS DELETED
 module.exports = (app) => {
-    app.get('/api/v1/categories',  (req, res, next) => {
+    app.get('/api/v1/categories', (req, res, next) => {
         console.log('inside list categories');
 
         Post.aggregate(
-            [ 
-                {    $group: {
-                        _id : '$category', 
+            [
+                {
+                    $group: {
+                        _id: '$category',
                         count: {
-                            $sum : 1
+                            $sum: 1
                         }
                     }
                 }
@@ -20,7 +21,7 @@ module.exports = (app) => {
                 console.log(catego, err);
                 if (err) {
                     return res.status(500).send({ message: 'Error: Server Error' });
-                } 
+                }
                 else {
 
                     const formCatego = catego.reduce((acc, cat) => {
@@ -29,20 +30,20 @@ module.exports = (app) => {
                         };
                         name[cat._id] = cat.count;
                         return name;
-                    },{});
-                    
-                    Category.find({isDeleted : false}, (err, cats) => {
-                        if(err) {
+                    }, {});
+
+                    Category.find({ isDeleted: false }, (err, cats) => {
+                        if (err) {
                             console.log(err);
-                            return res.send(500).status({"error": "Server Error"});
+                            return res.send(500).status({ "error": "Server Error" });
                         } else {
                             console.log(cats);
                             const filledData = cats.reduce((acc, cat) => {
-                                let data = {...acc};
-                                if(!formCatego[cat.name]) {
+                                let data = { ...acc };
+                                if (!formCatego[cat.name]) {
                                     data[cat.name] = 0;
                                     return data;
-                                } 
+                                }
                                 data[cat.name] = formCatego[cat.name];
                                 return data;
                             }, {});
@@ -63,15 +64,15 @@ module.exports = (app) => {
         } = req.body;
 
         console.log(name);
-        Category.find({name: name}, (err, categories) => {
+        Category.find({ name: name }, (err, categories) => {
             console.log(err, categories);
             if (err) {
                 return res.status(500).send({
                     message: 'Error: Server Error',
                 });
-            } 
+            }
             else {
-                if(categories.length != 0) {
+                if (categories.length !== 0) {
                     return res.status(400).send({
                         message: 'Bad Request',
                     });
@@ -97,15 +98,15 @@ module.exports = (app) => {
     app.delete('/api/v1/categories/:categoryName', (req, res, next) => {
         const name = req.params.categoryName;
         console.log(name);
-        Category.findOne({name: name, isDeleted: false}, (err, category) =>{
+        Category.findOne({ name: name, isDeleted: false }, (err, category) => {
             console.log(err, category);
-            if(err) {
+            if (err) {
                 return res.status(500).send({
                     message: 'Error: Server Error',
                 });
             }
             else {
-                if(category != undefined) {
+                if (!category) {
                     console.log('Category:', category);
                     category.set('isDeleted', true);
                     console.log(category);
@@ -120,8 +121,7 @@ module.exports = (app) => {
                         }
                     });
                 }
-                else
-                {
+                else {
                     return res.status(400).send({
                         message: 'Bad Request',
                     });

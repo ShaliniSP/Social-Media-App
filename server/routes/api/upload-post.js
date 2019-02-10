@@ -21,11 +21,11 @@ module.exports = (app) => {
                 });
             } else {
                 if (posts.length !== 0) {
-                    return res.status(400).send({ 
-                        message: 'Bad Request', 
+                    return res.status(400).send({
+                        message: 'Bad Request',
                     });
                 }
-                
+
                 // Timestamp stamp checking
 
                 // imagUrl Checking
@@ -49,6 +49,6 @@ module.exports = (app) => {
                     }
                 });
             }
-        });        
+        });
     });
 };
