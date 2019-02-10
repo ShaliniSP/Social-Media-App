@@ -3,9 +3,9 @@ const Post = require('../../models/Posts');
 
 //NEED TO CHECK FOR IS DELETED
 module.exports = (app) => {
-
-    console.log('inside list categories');
     app.get('/api/v1/categories',  (req, res, next) => {
+        console.log('inside list categories');
+
         Post.aggregate(
             [ 
                 {    $group: {
@@ -87,7 +87,7 @@ module.exports = (app) => {
                             message: 'Error: Server Error',
                         });
                     } else {
-                        return res.sendStatus(202);
+                        return res.sendStatus(200);
                     }
                 });
             }
@@ -116,7 +116,7 @@ module.exports = (app) => {
                                 message: 'Error: Server Error',
                             });
                         } else {
-                            return res.sendStatus(201);
+                            return res.sendStatus(200);
                         }
                     });
                 }

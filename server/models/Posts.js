@@ -34,7 +34,7 @@ const PostSchema = new mongoose.Schema({
         default: '',
     },
     actId: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Number,
         default: 0,
     },
     imgUrl: {
@@ -45,6 +45,10 @@ const PostSchema = new mongoose.Schema({
         type: String,
         default: '',
     },    
+    votes: {
+        type: Number,
+        default: 0,
+    },
 });
 
 module.exports = mongoose.model('Post', PostSchema);

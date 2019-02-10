@@ -11,7 +11,7 @@ module.exports = (app) => {
             imgUrl,
         } = req.body;
 
-        console.log(actId, timestamp, caption, categroy, imgUrl);
+        console.log(actId, timestamp, caption, category, imgUrl);
 
         Post.find({ actId: actId }, (err, posts) => {
             console.log(err, posts);
@@ -45,7 +45,7 @@ module.exports = (app) => {
                             message: 'Error: Server Error',
                         });
                     } else {
-                        return res.sendStatus(201);
+                        return res.sendStatus(200);
                     }
                 });
             }
