@@ -44,7 +44,12 @@ const PostSchema = new mongoose.Schema({
     timestamp: {
         type: String,
         default: '',
-    },    
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false,
+    },
+        
 });
 
 module.exports = mongoose.model('Post', PostSchema);
