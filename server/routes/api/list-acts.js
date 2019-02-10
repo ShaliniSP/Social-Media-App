@@ -1,4 +1,3 @@
-const Category = require('../../models/Categories');
 const Post = require('../../models/Posts');
 
 module.exports = (app) => {
@@ -21,7 +20,7 @@ module.exports = (app) => {
                         message: 'Too many Acts',
                     });
                 }
-                else if (cat.length == 0) {
+                else if (cat.length === 0) {
                     console.log('nothing');
                     return res.status(204).send({
                         message: 'No Acts to show',
