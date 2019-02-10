@@ -34,7 +34,7 @@ const PostSchema = new mongoose.Schema({
         default: '',
     },
     actId: {
-        type: Number,
+        type: mongoose.Schema.Types.ObjectId,
         default: 0,
     },
     imgUrl: {

@@ -1,9 +1,8 @@
-const User = require('../../models/User');
 const Post = require('../../models/Posts');
 
 module.exports = (app) => {
     app.post('/api/act/upload', (req, res, next) => {
-        
+
         const {
             actId,
             timestamp,
@@ -12,7 +11,7 @@ module.exports = (app) => {
             imgUrl,
         } = req.body;
 
-        console.log(actId, timestamp, caption, imgUrl);
+        console.log(actId, timestamp, caption, categroy, imgUrl);
 
         Post.find({ actId: actId }, (err, posts) => {
             console.log(err, posts);
@@ -23,7 +22,7 @@ module.exports = (app) => {
             } else {
                 if (posts.length !== 0) {
                     return res.status(400).send({ 
-                        message: 'MF', 
+                        message: 'Bad Request', 
                     });
                 }
                 
@@ -46,7 +45,7 @@ module.exports = (app) => {
                             message: 'Error: Server Error',
                         });
                     } else {
-                        return res.sendStatus(202);
+                        return res.sendStatus(201);
                     }
                 });
             }
