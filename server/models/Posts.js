@@ -45,6 +45,10 @@ const PostSchema = new mongoose.Schema({
         type: String,
         default: '',
     },    
+    votes: {
+        type: Number,
+        default: 0,
+    },
 });
 
 module.exports = mongoose.model('Post', PostSchema);
