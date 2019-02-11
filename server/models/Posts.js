@@ -44,6 +44,10 @@ const PostSchema = new mongoose.Schema({
     timestamp: {
         type: String,
         default: '',
+    },    
+    votes: {
+        type: Number,
+        default: 0,
     },
     isDeleted: {
         type: Boolean,

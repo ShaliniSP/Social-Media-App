@@ -3,9 +3,9 @@ const Post = require('../../models/Posts');
 
 //NEED TO CHECK FOR IS DELETED
 module.exports = (app) => {
-
-    //console.log('inside list categories');
     app.get('/api/v1/categories',  (req, res, next) => {
+        console.log('inside list categories');
+
         Post.aggregate(
             [ 
                 {    $group: {
@@ -105,7 +105,7 @@ module.exports = (app) => {
                 });
             }
             else {
-                if(category !== undefined) {
+                if(category) {
                     console.log('Category:', category);
                     category.set('isDeleted', true);
                     console.log(category);
