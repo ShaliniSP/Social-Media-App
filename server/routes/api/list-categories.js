@@ -71,7 +71,7 @@ module.exports = (app) => {
                 });
             } 
             else {
-                if(categories.length != 0) {
+                if(categories.length !== 0) {
                     return res.status(400).send({
                         message: 'Bad Request',
                     });
@@ -105,7 +105,7 @@ module.exports = (app) => {
                 });
             }
             else {
-                if(category != undefined) {
+                if(category !== undefined) {
                     console.log('Category:', category);
                     category.set('isDeleted', true);
                     console.log(category);

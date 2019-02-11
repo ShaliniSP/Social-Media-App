@@ -1,12 +1,9 @@
-const Category = require('../../models/Categories');
 const Post = require('../../models/Posts');
 
 module.exports = (app) => {
 
-    app.get('/api/v1/categories/acts/size', (req,res,next) => {
-        const{
-            name,
-        } = req.body;
+    app.get('/api/v1/categories/:categoryName/acts/size', (req,res,next) => {
+        const name = req.params.categoryName;
 
         console.log(name)
 
@@ -20,13 +17,13 @@ module.exports = (app) => {
                 return res.sendStatus(500);
             }
             else{
-                if(result==0){
+                if(result===0){
                     return res.sendStatus(204);
                 }
                 else{
                     console.log('printing result:');
                     console.log(result);
-                    return res.sendStatus(200);
+                    return res.status(200).send([result]);
 
                 }
                 

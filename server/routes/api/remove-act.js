@@ -11,7 +11,7 @@ module.exports = (app) => {
             }
             else {
                 console.log(post);
-                if(post != undefined) {
+                if(post !== undefined) {
                     post.set('isDeleted', true);
                     post.save((err, post) => {
                         if (err) {

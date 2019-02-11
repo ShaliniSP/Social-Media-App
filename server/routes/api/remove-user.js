@@ -13,7 +13,7 @@ module.exports = (app) => {
             }
 
             else {
-                if(user != undefined) {
+                if(user !== undefined) {
                     //console.log('user:', user);
                     user.set('isDeleted', true);
                     //console.log(user);
