@@ -24,7 +24,30 @@
 				},
 				"description": "The \"DONE\" response endpoint"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Basic",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080",
+							"host": [
+								"localhost"
+							],
+							"port": "8080"
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n\t\"message\": \"Done\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Adding users on UI",
