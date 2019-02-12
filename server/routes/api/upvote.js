@@ -3,21 +3,21 @@ const Post = require('../../models/Posts');
 module.exports = (app) => {
     app.post('/api/v1/acts/upvote', (req, res) => {
         const {
-            actId : actId,
+            actId,
         } = req.body;
-        Post.findOne({actId:actId}, (err, acts) =>{
-            if(err) {
+        Post.findOne({ actId: actId }, (err, acts) => {
+            if (err) {
                 return res.status(500).send({
                     message: 'Error: Server Error',
                 });
             }
             else {
-                if(acts != undefined) {
+                if (!acts) {
                     //acts.update({ $inc: { "votes": 1}});
-                    acts.votes = acts.votes +1;
+                    acts.votes = acts.votes + 1;
                     console.log(acts.votes);
-                    acts.save((err, act) =>{
-                        if(err) {
+                    acts.save((err, act) => {
+                        if (err) {
                             return res.status(500).send({
                                 message: 'Error: Server Error',
                             });

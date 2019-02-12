@@ -13,26 +13,22 @@ module.exports = (app) => {
             }
 
             else {
-                if(user != null) {
+                if(user !== undefined) {
                     //console.log('user:', user);
                     user.set('isDeleted', true);
                     //console.log(user);
                     user.save((err, post) => {
                         //console.log(err, post);
                         if (err) {
-                            return res.status(500).send({
-                                message: 'Error: Server Error',
-                            });
+                            return res.sendStatus(500);
                         } else {
-                            return res.sendStatus(201);
+                            return res.sendStatus(200);
                         }
                     });
                 }
                 else
                 {
-                    return res.status(400).send({
-                        message: 'Bad Request',
-                    });
+                    return res.sendStatus(400);
                 }
             }
         })

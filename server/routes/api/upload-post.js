@@ -1,5 +1,23 @@
 const Post = require('../../models/Posts');
 
+function dateTimeStringParser(dateString) {
+    // takes DD-MM-YYYY:SS-MM-HH
+    // and returns correct date object
+    const [ dateDDMMYYYY, time ] = dateString.split(':');
+
+    const [ DD, MM, YYYY ] = dateDDMMYYYY.split('-');
+
+    const [ secs, mins, hours ] = time.split('-');
+
+    const DateString = [YYYY, MM, DD].join('-');
+
+    const TimeString = [hours, mins, secs].join(':');
+
+    const DateTimeString = DateString + 'T' + TimeString;
+
+    return new Date(DateTimeString);
+}
+
 module.exports = (app) => {
     app.post('/api/act/upload', (req, res, next) => {
 
@@ -21,12 +39,14 @@ module.exports = (app) => {
                 });
             } else {
                 if (posts.length !== 0) {
-                    return res.status(400).send({ 
-                        message: 'Bad Request', 
+                    return res.status(400).send({
+                        message: 'Bad Request',
                     });
                 }
-                
-                // Timestamp stamp checking
+
+                // timestamp checking
+
+
 
                 // imagUrl Checking
 
@@ -37,6 +57,9 @@ module.exports = (app) => {
                 newPost.caption = caption;
                 newPost.imgUrl = imgUrl;
                 newPost.category = category;
+                newPost.timestampParsed = dateTimeStringParser(timestamp);
+
+                console.log(dateTimeStringParser(timestamp));
 
                 newPost.save((err, post) => {
                     console.log(err, post);
@@ -49,6 +72,6 @@ module.exports = (app) => {
                     }
                 });
             }
-        });        
+        });
     });
 };
