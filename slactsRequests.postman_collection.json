@@ -5,5 +5,113 @@
 		"description": "Requests to test endpoints for slacts",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
-	"item": []
+	"item": [
+		{
+			"name": "Basic",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8080",
+					"host": [
+						"localhost"
+					],
+					"port": "8080"
+				},
+				"description": "The \"DONE\" response endpoint"
+			},
+			"response": [
+				{
+					"name": "Basic",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080",
+							"host": [
+								"localhost"
+							],
+							"port": "8080"
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n\t\"message\": \"Done\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Adding users on UI",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"snaku\",\n\t\"password\": \"kjhdsf\",\n\t\"email\": \"lkjsdhf@kjhsdf.com\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/account/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"account",
+						"signup"
+					]
+				},
+				"description": "This is to be used on UI side"
+			},
+			"response": []
+		},
+		{
+			"name": "Adding users for script for assign",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"klsjdhjhgfjhgfad\",\n\t\"password\": \"123456789012345678901234567890123456a890\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				},
+				"description": "Simply"
+			},
+			"response": []
+		}
+	]
 }

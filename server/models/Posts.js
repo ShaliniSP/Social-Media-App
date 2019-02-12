@@ -43,8 +43,12 @@ const PostSchema = new mongoose.Schema({
     },
     timestamp: {
         type: String,
-        default: '',
-    },    
+        default: Date.now(),
+    },
+    timestampParsed: {
+        type: Date,
+        default: Date.now(),
+    },
     votes: {
         type: Number,
         default: 0,
