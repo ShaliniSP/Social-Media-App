@@ -12,6 +12,11 @@ const port  = config.RESTAPIport;
 // Configuration
 // =========================================================================
 
+// var corsOptions = {
+//   origin: '*',
+//   optionsSuccessStatus: 200,
+// }
+
 // Set up Mongoose
 mongoose.connect(config.db, { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
