@@ -11,16 +11,14 @@ module.exports = (app) => {
 
         const name = req.params.categoryName;
 
-        const builtQuery = start && end ? { 
+        const builtQuery = start && end ? {
             category: name, 
             isDeleted: false, 
             actId: {
                 $gt: start, 
                 $lt: end,
             },
-        } 
-        : 
-        { 
+        } : {
             category: name, 
             isDeleted: false,
         };
@@ -28,6 +26,7 @@ module.exports = (app) => {
         console.log('ln28', builtQuery);
         
         Post.find(builtQuery, (err, cats) => {
+            console.log(cats);
             if (err) {
                 console.log('server err');
                 return res.status(500).send({

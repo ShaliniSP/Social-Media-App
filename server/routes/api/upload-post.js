@@ -19,17 +19,17 @@ function dateTimeStringParser(dateString) {
 }
 
 module.exports = (app) => {
-    app.post('/api/act/upload', (req, res, next) => {
+    app.post('/api/v1/acts', (req, res, next) => {
 
         const {
             actId,
             timestamp,
             caption,
-            category,
-            imgUrl,
+            categoryName,
+            imgB64,
         } = req.body;
 
-        console.log(actId, timestamp, caption, category, imgUrl);
+        console.log(actId, timestamp, caption, categoryName, imgB64);
 
         Post.find({ actId: actId }, (err, posts) => {
             console.log(err, posts);
@@ -55,8 +55,8 @@ module.exports = (app) => {
                 newPost.actId = actId;
                 newPost.timestamp = timestamp;
                 newPost.caption = caption;
-                newPost.imgUrl = imgUrl;
-                newPost.category = category;
+                newPost.imgUrl = imgB64;
+                newPost.category = categoryName;
                 newPost.timestampParsed = dateTimeStringParser(timestamp);
 
                 console.log(dateTimeStringParser(timestamp));
