@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './app-container.css';
 import { Navbar } from 'react-bootstrap';
 
+import PostsContainer from './../PostContainer/post-container.js';
+
 class AppContainer extends Component {
     render() {
         return (
@@ -16,8 +18,8 @@ class AppContainer extends Component {
                         </span>
                     </Navbar.Brand>
                 </Navbar>
-
-
+        
+                <PostsContainer />
 
                 <Navbar bg="dark" fixed="bottom">
                     <Navbar.Brand href="#home">
