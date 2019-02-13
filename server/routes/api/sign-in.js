@@ -3,77 +3,77 @@ const UserSession = require('../../models/UserSession');
 
 module.exports = (app) => {
     // SignUp
-    app.post('/api/account/signup', (req, res, next) => {
-        const body = req.body;
-        console.log(body);
+    // app.post('/api/account/signup', (req, res, next) => {
+    //     const body = req.body;
+    //     console.log(body);
 
-        const {
-            password,
-        } = body;
+    //     const {
+    //         password,
+    //     } = body;
 
-        const {
-            name,
-        } = body;
+    //     const {
+    //         name,
+    //     } = body;
 
-        let {
-            email,
-        } = body;
+    //     let {
+    //         email,
+    //     } = body;
 
-        if (!email) {
-            return res.send({
-                success: false,
-                message: 'Error: Email cannot be blank.'
-            });
-        }
-        if (!password) {
-            return res.send({
-                success: false,
-                message: 'Error: Password cannot be blank.'
-            });
-        }
+    //     if (!email) {
+    //         return res.send({
+    //             success: false,
+    //             message: 'Error: Email cannot be blank.'
+    //         });
+    //     }
+    //     if (!password) {
+    //         return res.send({
+    //             success: false,
+    //             message: 'Error: Password cannot be blank.'
+    //         });
+    //     }
 
-        email = email.toLowerCase();
-        email = email.trim();
+    //     email = email.toLowerCase();
+    //     email = email.trim();
 
-        User.find(
-            {
-                email: email,
-            },
-            (err, prevUsers) => {
-                // console.log(prevUsers);
-                if (err) {
-                    return res.status(500).send({
-                        message: 'Error: Server Error',
-                    });
-                }
-                else if (prevUsers.length !== 0) {
-                    return res.status(200).send({
-                        message: 'Error: Account Already Exists'
-                    })
-                }
-                else {
-                    const newUser = new User();
+    //     User.find(
+    //         {
+    //             email: email,
+    //         },
+    //         (err, prevUsers) => {
+    //             // console.log(prevUsers);
+    //             if (err) {
+    //                 return res.status(500).send({
+    //                     message: 'Error: Server Error',
+    //                 });
+    //             }
+    //             else if (prevUsers.length !== 0) {
+    //                 return res.status(200).send({
+    //                     message: 'Error: Account Already Exists'
+    //                 })
+    //             }
+    //             else {
+    //                 const newUser = new User();
 
-                    newUser.email = email;
-                    newUser.password = newUser.generateHash(password);
-                    newUser.name = name;
-                    // console.log(newUser.password);
-                    newUser.save((err, user) => {
-                        if (err) {
-                            return res.status(500).send({
-                                message: err,
-                            });
-                        }
-                        else {
-                            return res.status(200).send({
-                                message: "Signed Up",
-                            });
-                        }
+    //                 newUser.email = email;
+    //                 newUser.password = newUser.generateHash(password);
+    //                 newUser.name = name;
+    //                 // console.log(newUser.password);
+    //                 newUser.save((err, user) => {
+    //                     if (err) {
+    //                         return res.status(500).send({
+    //                             message: err,
+    //                         });
+    //                     }
+    //                     else {
+    //                         return res.status(200).send({
+    //                             message: "Signed Up",
+    //                         });
+    //                     }
 
-                    });
-                }
-            });
-    });
+    //                 });
+    //             }
+    //         });
+    // });
 
     app.post('/api/account/signin', (req, res, next) => {
         const { body } = req;
@@ -83,12 +83,12 @@ module.exports = (app) => {
         } = body;
 
         let {
-            email
+            username,
         } = body;
 
-        if (!email) {
+        if (!username) {
             return res.status(300).send({
-                message: 'Error: Email cannot be blank.',
+                message: 'Error: Uname cannot be blank.',
                 respId: 'LIE1'
             });
         }
@@ -101,11 +101,11 @@ module.exports = (app) => {
             });
         }
 
-        email = email.toLowerCase();
-        email = email.trim();
+        username = username.toLowerCase();
+        username = username.trim();
 
         User.find({
-            email: email
+            username,
         }, (err, users) => {
             if (err) {
                 console.log('err2:', err);
@@ -125,7 +125,7 @@ module.exports = (app) => {
             } else {
                 const user = users[0];
                 console.log(password, user.password);
-                if (!user.validPassword(password)) {
+                if (user.password !== password) {
                     return res.send({
                         success: false,
                         message: 'Error: Wrong Email or Password',

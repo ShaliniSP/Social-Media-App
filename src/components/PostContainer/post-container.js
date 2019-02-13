@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import postDataService from './../../dataservice/posts-service.js';
+
 class PostsContainer extends Component {
     constructor(props, context) {
         super(props, context);
@@ -8,8 +10,17 @@ class PostsContainer extends Component {
         // this.handleClose = this.handleClose.bind(this);
 
         this.state = {
-
+            posts: [],
         };
+    }
+
+    componentDidMount() {
+        postDataService.getPostsByCategoryName('All', posts => {
+            console.log(posts);
+            return this.setState({
+                posts,
+            });
+        });
     }
 
     render() {
