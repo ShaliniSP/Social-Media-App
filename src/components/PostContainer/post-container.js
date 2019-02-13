@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './post-container.css';
 
 class PostsContainer extends Component {
     constructor(props, context) {
@@ -14,7 +15,7 @@ class PostsContainer extends Component {
 
     render() {
         return (
-            <div>
+            <div className="post-container" >
             <h1>
                 Hello World!
             </h1>

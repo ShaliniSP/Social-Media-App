@@ -1,11 +1,4 @@
-.navbar-brand-name {
-    color: black;
-    font-weight: 500;
-    justify-self: center;
-    padding-right: 0.25em;
-}
-
-.navbar-brand-sub {
-    color: black;
-    font-size: 0.5em;
+.nav
+{
+    left:50%;
 }

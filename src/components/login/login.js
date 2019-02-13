@@ -55,7 +55,7 @@ class LoginComp extends Component {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
                 </Form.Group>
-                <Button variant="primary" onClick={this.onSubmit}>
+                <Button variant="info" onClick={this.onSubmit}>
                     Submit
                 </Button>
             </Form>            
