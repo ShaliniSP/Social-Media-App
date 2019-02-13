@@ -12,4 +12,14 @@ export default {
             return callback(json);
         });
     },
+
+    // username and password in an object and return is callback
+    signup(unameAndPassword, callback) {
+        window.fetch(RESTAPI + '/api/account/signin')
+        .then(response => response.json())
+        .then(json => {
+            console.log(json);
+            return callback(json);
+        });
+    },
 };
