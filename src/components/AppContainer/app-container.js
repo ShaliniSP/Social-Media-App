@@ -8,10 +8,10 @@ class AppContainer extends Component {
             <div>
                 <Navbar bg="light" fixed="top">
                     <Navbar.Brand align="center">
-                        <span class="navbar-brand-name">
+                        <span className="navbar-brand-name">
                             Slacts
                         </span>
-                        <span class="navbar-brand-sub">
+                        <span className="navbar-brand-sub">
                             - selfies of acts worth sharing
                         </span>
                     </Navbar.Brand>

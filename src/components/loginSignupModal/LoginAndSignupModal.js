@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { Modal, Tabs, Tab, Button } from 'react-bootstrap';
 
+import LoginComp from './../login/login.js';
+
 class LoginAndSignUp extends Component {
     constructor(props, context) {
         super(props, context);
@@ -33,7 +35,7 @@ class LoginAndSignUp extends Component {
                     <Modal.Body>
                         <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
                             <Tab eventKey="home" title="Login">
-                                LoginComponent
+                                <LoginComp />
                             </Tab>
                             <Tab eventKey="profile" title="Signup">
                                 SignupComponent
