@@ -4,6 +4,8 @@ import { Modal, Tabs, Tab, Button } from 'react-bootstrap';
 
 import LoginComp from './../login/login.js';
 
+import SignupComp from './../login/signup.js';
+
 class LoginAndSignUp extends Component {
     constructor(props, context) {
         super(props, context);
@@ -38,7 +40,7 @@ class LoginAndSignUp extends Component {
                                 <LoginComp />
                             </Tab>
                             <Tab eventKey="profile" title="Signup">
-                                SignupComponent
+                                <SignupComp />
                             </Tab>
                         </Tabs>
                         <Button variant="link" size="sm" onClick={this.handleClose}>
