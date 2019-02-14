@@ -15,7 +15,7 @@ class PostsContainer extends Component {
     }
 
     componentDidMount() {
-        postDataService.getPostsByCategoryName('All', posts => {
+        postDataService.getAllPosts(posts => {
             console.log(posts);
             return this.setState({
                 posts,

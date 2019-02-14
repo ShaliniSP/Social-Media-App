@@ -22,4 +22,12 @@ export default {
             return callback(json);
         });
     },
+
+    getAllPosts(callback) {
+        fetch(RESTAPI + '/api/v1/acts')
+        .then(resp => resp.json())
+        .then(json => {
+            console.log('getAllPostsResponse', json);
+        });
+    },
 };
