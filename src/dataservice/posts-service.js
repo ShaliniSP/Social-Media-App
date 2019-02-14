@@ -19,7 +19,7 @@ export default {
     signup(unameAndPassword, callback) {
         window.fetch(RESTAPI + '/api/account/signin', {
             method: 'POST',
-            body: unameAndPassword, })
+            body: JSON.stringify(unameAndPassword), })
         .then(response => response.json())
         .then(json => {
             console.log(json);
