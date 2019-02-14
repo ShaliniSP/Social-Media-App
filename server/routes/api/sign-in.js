@@ -267,4 +267,4 @@ module.exports = (app) => {
         .all((req, res) => {
             res.status(405).send();
         });
-    });
+    };

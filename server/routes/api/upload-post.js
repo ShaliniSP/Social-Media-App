@@ -29,7 +29,6 @@ module.exports = (app) => {
             caption,
             categoryName,
             imgB64,
-            username,
         } = req.body;
 
         console.log(actId, timestamp, caption, categoryName, imgB64);
