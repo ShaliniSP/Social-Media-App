@@ -76,4 +76,21 @@ export default {
         }))
         .then(json => callback(json));
     },
+
+    uploadPost(post, callback) {
+        window.fetch(RESTAPI + '/api/v1/acts',{
+          method:'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(post),
+        })
+        .then(response => {
+            if (response.status === 200) {
+                return callback(true);
+            }                
+            return callback(false);
+        });
+    },
 };
