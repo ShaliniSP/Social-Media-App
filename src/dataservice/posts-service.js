@@ -15,7 +15,9 @@ export default {
 
     // username and password in an object and return is callback
     signup(unameAndPassword, callback) {
-        window.fetch(RESTAPI + '/api/account/signin')
+        window.fetch(RESTAPI + '/api/account/signin', {
+            method: 'POST',
+            body: unameAndPassword, })
         .then(response => response.json())
         .then(json => {
             console.log(json);
