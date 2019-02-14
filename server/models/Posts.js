@@ -29,6 +29,10 @@ const PostSchema = new mongoose.Schema({
         type: String,
         default: 'All',
     },
+    username: {
+        type: String,
+        default: 'John Doe',
+    },
     caption: {
         type: String,
         default: '',

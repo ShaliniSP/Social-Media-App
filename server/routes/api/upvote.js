@@ -1,18 +1,21 @@
 const Post = require('../../models/Posts');
 
 module.exports = (app) => {
-    app.post('/api/v1/acts/upvote', (req, res) => {
+    app.route('/api/v1/acts/upvote')
+    .post((req, res) => {
         const {
             actId,
         } = req.body;
+        console.log(actId);
         Post.findOne({ actId: actId }, (err, acts) => {
+            console.log(acts);
             if (err) {
                 return res.status(500).send({
                     message: 'Error: Server Error',
                 });
             }
             else {
-                if (!acts) {
+                if (acts) {
                     //acts.update({ $inc: { "votes": 1}});
                     acts.votes = acts.votes + 1;
                     console.log(acts.votes);
@@ -34,5 +37,8 @@ module.exports = (app) => {
                 }
             }
         });
+    })
+    .all((req, res) => {
+        res.status(405).send();
     });
 };

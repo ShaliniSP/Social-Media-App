@@ -2,10 +2,11 @@ const User = require('../../models/User');
 
 module.exports = (app) => {
     //remove user
-    app.delete('/api/v1/users/:username', (req, res, next) => {
+    app.route('/api/v1/users/:username')
+    .delete((req, res, next) => {
         const name = req.params.username;
-
-        User.findOne({name: name, isDeleted: false}, (err,user) => {
+        //console.log(name);
+        User.findOne({username: name, isDeleted: false}, (err,user) => {
             if(err) {
                 return res.status(500).send({
                     message: 'Error: Server Error',
@@ -13,7 +14,7 @@ module.exports = (app) => {
             }
 
             else {
-                if(user !== undefined) {
+                if(user != null) {
                     //console.log('user:', user);
                     user.set('isDeleted', true);
                     //console.log(user);
@@ -31,7 +32,9 @@ module.exports = (app) => {
                     return res.sendStatus(400);
                 }
             }
-        })
-
+        });
     })
+    .all((req, res) => {
+        res.status(405).send();
+    });
 };
