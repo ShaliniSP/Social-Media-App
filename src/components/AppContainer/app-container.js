@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './app-container.css';
-import { Navbar, Container, Row, Col, ButtonGroup, Button, Nav } from 'react-bootstrap';
+import { Navbar, Container, Row, Col, Button } from 'react-bootstrap';
 
 import PostsContainer from './../PostContainer/post-container.js';
 
@@ -23,10 +23,10 @@ class AppContainer extends Component {
         return (
             <div>
                 <Navbar bg="info" variant="dark" expand="true" fixed="top">
-                    <Navbar.Brand href="#home" ><h1>SlActs</h1></Navbar.Brand>
+                    <Navbar.Text className="nav-brand" href="#home" ><h1>SlActs</h1></Navbar.Text>
                     <Button variant="outline-light">Login</Button>
                 </Navbar>
-                <Container>
+                <Container className="post-cont">
                     <Row>
                         <Col xs={0} md={3}>
                         </Col>
@@ -39,26 +39,7 @@ class AppContainer extends Component {
                 </Container>
 
 
-                <Navbar bg="dark" fixed="bottom">
-                    <div>
-                    <Nav fill variant="pills" defaultActiveKey="/home">
-                        <Nav.Item>
-                            <Nav.Link href="/home">Active</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="link-1">Loooonger NavLink</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="link-2">Link</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="disabled" disabled>
-                                Disabled
-                        </Nav.Link>
-                        </Nav.Item>
-                    </Nav>
-                    </div>
-                </Navbar>
+                
             </div>
         );
     }

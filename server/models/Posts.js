@@ -57,6 +57,10 @@ const PostSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    username: {
+        type: String,
+        default: ''
+    }
         
 });
 
