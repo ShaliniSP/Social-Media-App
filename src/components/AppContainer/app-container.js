@@ -22,15 +22,9 @@ class AppContainer extends Component {
     render() {
         return (
             <div>
-                <Navbar bg="light" fixed="top">
-                    <Navbar.Brand align="center">
-                        <span className="navbar-brand-name">
-                            Slacts
-                        </span>
-                        <span className="navbar-brand-sub">
-                            - selfies of acts worth sharing
-                        </span>
-                    </Navbar.Brand>
+                <Navbar bg="info" variant="dark" expand="true" fixed="top">
+                    <Navbar.Brand href="#home" ><h1>SlActs</h1></Navbar.Brand>
+                    <Button variant="outline-light">Login</Button>
                 </Navbar>
                 <Container>
                     <Row>

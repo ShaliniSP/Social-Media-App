@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './post-container.css';
 
 import './post-container.css';
 
