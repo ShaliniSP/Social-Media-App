@@ -9,7 +9,7 @@ class AppContainer extends Component {
     render() {
         return (
             <div>
-                <Navbar className="nav" expand="true" fixed="top">
+                <Navbar bg="info" variant="light" expand="true" fixed="top">
                     <Navbar.Brand href="#home" ><h1>SlActs</h1></Navbar.Brand>
                     <Button variant="outline-light">Login</Button>
                 </Navbar>
