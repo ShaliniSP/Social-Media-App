@@ -2,7 +2,8 @@ const Post = require('../../models/Posts');
 
 module.exports = (app) => {
 
-    app.delete('/api/v1/acts/:actid', (req,res) => {
+    app.route('/api/v1/acts/:actid')
+    .delete((req,res) => {
         const actId = req.params.actid;
 
         Post.findOne({actId : actId, isDeleted : false}, (err,post) => {
@@ -11,7 +12,7 @@ module.exports = (app) => {
             }
             else {
                 console.log(post);
-                if(post !== undefined) {
+                if(post !== null) {
                     post.set('isDeleted', true);
                     post.save((err, post) => {
                         if (err) {
@@ -26,6 +27,9 @@ module.exports = (app) => {
                     return res.sendStatus(400);
                 }
             }
-        })
+        });
     })
+    .all((req, res) => {
+        res.status(405).send();
+    });
 };

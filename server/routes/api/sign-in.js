@@ -124,7 +124,7 @@ module.exports = (app) => {
                 });
             } else {
                 const user = users[0];
-                console.log(password, user.password);
+                //console.log(password, user.password);
                 if (user.password !== password) {
                     return res.send({
                         success: false,
@@ -222,45 +222,49 @@ module.exports = (app) => {
         });
     });
 
-    app.post('/api/v1/users', (req, res, next) => {
-        const {
-            username,
-            password,
-        } = req.body;
+    app.route('/api/v1/users')
+        .post((req, res, next) => {
+            const {
+                username,
+                password,
+            } = req.body;
 
-        if (!username || !password) {
-            return res.status(500).send({});
-        }
-
-        // Checking if the password is an SHA1 string
-        const sha1RegExp = new RegExp('^[0-9a-f]{40}$');
-
-        if (!sha1RegExp.test(password)) {
-            console.log('SHA1 failed');
-            return res.status(405).send({});
-        }
-
-        User.find({ username }, (err, user) => {
-            if (err) {
+            if (!username || !password) {
                 return res.status(500).send({});
             }
 
-            if (user.length !== 0) {
-                return res.status(405).send({});
+            // Checking if the password is an SHA1 string
+            const sha1RegExp = new RegExp('^[0-9a-f]{40}$');
+
+            if (!sha1RegExp.test(password)) {
+                console.log('SHA1 failed');
+                return res.status(400).send({});
             }
 
-            const newUser = new User();
-
-            newUser.username = username;
-            newUser.password = password;
-
-            newUser.save((error, newUser) => {
-                if (error) {
-                    console.log(error, newUser);
-                    return res.status(405).send({});
+            User.find({ username }, (err, user) => {
+                if (err) {
+                    return res.status(500).send({});
                 }
-                return res.status(201).send({});
+
+                if (user.length !== 0) {
+                    return res.status(400).send({});
+                }
+
+                const newUser = new User();
+
+                newUser.username = username;
+                newUser.password = password;
+
+                newUser.save((error, newUser) => {
+                    if (error) {
+                        console.log(error, newUser);
+                        return res.status(400).send({});
+                    }
+                    return res.status(201).send({});
+                });
             });
+        })
+        .all((req, res) => {
+            res.status(405).send();
         });
     });
-};
