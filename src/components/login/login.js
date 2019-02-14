@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import './login.css';
 
+import postDataService from './../../dataservice/posts-service.js'
+
 import {
     Form,
     Button,
@@ -27,10 +29,22 @@ class LoginComp extends Component {
   }
 
   onSubmit() {
+      const astate = this;
       console.log(this.state);
       console.log(sha1(this.state.password));
+      postDataService.signin({
+        username: this.state.uname,
+        password: sha1(this.state.password),
+        },(resp) => {
+          console.log(resp);
+          document.cookie = 'token=' + resp.token;
+          return astate.setState({
+            show: false,
+          });
+        })
+      }
 
-  }
+
 
   onChangeUname(event) {
 
@@ -61,8 +75,8 @@ class LoginComp extends Component {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
                 </Form.Group>
-                <Button variant="info" onClick={this.onSubmit}>
-                    Submit
+                <Button variant="info" block onClick={this.onSubmit}>
+                    Login
                 </Button>
             </Form>
         );
