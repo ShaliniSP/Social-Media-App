@@ -44,7 +44,13 @@ export default {
 
     getAllPosts(callback) {
         window.fetch(RESTAPI + '/api/v1/acts')
-        .then(resp => resp.json())
+        .then(resp => {
+            if (resp.status === 200) {
+                return resp.json();
+            } else {
+                return [];
+            }
+        })
         .then(json => {
             console.log('getAllPostsResponse', json);
             return callback(json);
