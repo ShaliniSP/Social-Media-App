@@ -29,6 +29,7 @@ module.exports = (app) => {
                             upvotes: post.votes,
                             imgB64: post.imgUrl,
                             category: post.category,
+                            _id: post._id,
                         };
                     });
                     return res.status(200).send(formattedPosts);

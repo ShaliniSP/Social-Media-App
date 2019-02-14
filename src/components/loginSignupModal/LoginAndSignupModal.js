@@ -14,7 +14,7 @@ class LoginAndSignUp extends Component {
         this.handleClose = this.handleClose.bind(this);
 
         this.state = {
-            show: true,
+            show: false,
         };
     }
 
@@ -34,8 +34,13 @@ class LoginAndSignUp extends Component {
         return (
             <div>
                 <Modal show={this.state.show} onHide={this.handleClose} centered>
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            Login Or Signup on Slacts
+                        </Modal.Title>
+                    </Modal.Header>
                     <Modal.Body>
-                        <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+                        <Tabs defaultActiveKey="home" id="uncontrolled-tab-example">
                             <Tab eventKey="home" title="Login">
                                 <LoginComp />
                             </Tab>

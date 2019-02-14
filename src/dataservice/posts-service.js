@@ -1,6 +1,8 @@
 import 'whatwg-fetch';
 
-const RESTAPI = 'http://localhost:8080';
+import constants from './../consts';
+
+const RESTAPI = constants.RESTAPIURL;
 
 export default {
     // gets posts of a category and return is callback
@@ -28,6 +30,7 @@ export default {
         .then(resp => resp.json())
         .then(json => {
             console.log('getAllPostsResponse', json);
+            return callback(json);
         });
     },
 };
