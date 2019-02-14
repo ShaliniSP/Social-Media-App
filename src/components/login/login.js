@@ -1,40 +1,46 @@
 import React, { Component } from 'react';
 
+import './login.css';
+
 import {
     Form,
     Button,
 } from 'react-bootstrap';
 
+var sha1 = require('sha1');
+
 class LoginComp extends Component {
-    constructor(props, context) {
-        super(props, context);
+  constructor(props, context) {
+      super(props, context);
 
-        this.onSubmit = this.onSubmit.bind(this);
+      this.onSubmit = this.onSubmit.bind(this);
 
-        this.onChangeEmail = this.onChangeEmail.bind(this);
+      this.onChangeUname = this.onChangeUname.bind(this);
 
-        this.onChangePassword = this.onChangePassword.bind(this);
+      this.onChangePassword = this.onChangePassword.bind(this);
 
-        this.state = {
-            show: true,
-            email: '',
-            password: '',
-        }
-    }
+      this.state = {
+          show: true,
+          uname: '',
+          password: '',
+      }
+  }
 
-    onSubmit() {
-        console.log(this.state);
-    }
+  onSubmit() {
+      console.log(this.state);
+      console.log(sha1(this.state.password));
 
-    onChangeEmail(event) {
-        
-        return this.setState({
-            email: event.currentTarget.value,
-        });
-    }
+  }
+
+  onChangeUname(event) {
+
+      return this.setState({
+          uname: event.currentTarget.value,
+      });
+  }
 
     onChangePassword(event) {
-        
+
         return this.setState({
             password: event.currentTarget.value,
         });
@@ -42,12 +48,12 @@ class LoginComp extends Component {
 
     render() {
         return (
-            <Form>
+            <Form className='form'>
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" value={this.state.email} onChange={this.onChangeEmail}/>
-                    <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
+                <Form.Label>User Name</Form.Label>
+                <Form.Control type="text" placeholder="Enter User Name" value={this.state.uname} onChange={this.onChangeUname}/>
+                <Form.Text className="text-muted">
+                    Ex. John
                 </Form.Text>
                 </Form.Group>
 
@@ -55,10 +61,10 @@ class LoginComp extends Component {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
                 </Form.Group>
-                <Button variant="primary" onClick={this.onSubmit}>
+                <Button variant="info" onClick={this.onSubmit}>
                     Submit
                 </Button>
-            </Form>            
+            </Form>
         );
     }
 }

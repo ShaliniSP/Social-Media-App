@@ -1,3 +1,3 @@
 export default {
-    RESTAPIURL: 'localhost:8080',
+    RESTAPIURL: 'http://localhost:8080',
 }

@@ -4,6 +4,8 @@ import { Modal, Tabs, Tab, Button } from 'react-bootstrap';
 
 import LoginComp from './../login/login.js';
 
+import SignupComp from './../login/signup.js';
+
 class LoginAndSignUp extends Component {
     constructor(props, context) {
         super(props, context);
@@ -12,7 +14,7 @@ class LoginAndSignUp extends Component {
         this.handleClose = this.handleClose.bind(this);
 
         this.state = {
-            show: true,
+            show: false,
         };
     }
 
@@ -32,13 +34,18 @@ class LoginAndSignUp extends Component {
         return (
             <div>
                 <Modal show={this.state.show} onHide={this.handleClose} centered>
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            Login Or Signup on Slacts
+                        </Modal.Title>
+                    </Modal.Header>
                     <Modal.Body>
-                        <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+                        <Tabs defaultActiveKey="home" id="uncontrolled-tab-example">
                             <Tab eventKey="home" title="Login">
                                 <LoginComp />
                             </Tab>
                             <Tab eventKey="profile" title="Signup">
-                                SignupComponent
+                                <SignupComp />
                             </Tab>
                         </Tabs>
                         <Button variant="link" size="sm" onClick={this.handleClose}>

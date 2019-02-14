@@ -1,7 +1,7 @@
 const Post = require('../../models/Posts');
 
 module.exports = (app) => {
-    app.get('/api/v1/acts/', (req, res) => {
+    app.get('/api/v1/acts', (req, res) => {
         console.log('inside list all');
 
         Post.find({isDeleted:false}, (err, posts) => {
@@ -28,6 +28,8 @@ module.exports = (app) => {
                             caption: post.caption,
                             upvotes: post.votes,
                             imgB64: post.imgUrl,
+                            category: post.category,
+                            _id: post._id,
                         };
                     });
                     return res.status(200).send(formattedPosts);

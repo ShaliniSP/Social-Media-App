@@ -29,6 +29,7 @@ module.exports = (app) => {
             caption,
             categoryName,
             imgB64,
+            username,
         } = req.body;
 
         console.log(actId, timestamp, caption, categoryName, imgB64);
@@ -56,6 +57,7 @@ module.exports = (app) => {
                 newPost.username = username;
                 newPost.category = categoryName;
                 newPost.timestampParsed = dateTimeStringParser(timestamp);
+                newPost.username = username;
 
                 console.log(dateTimeStringParser(timestamp));
 
