@@ -19,10 +19,12 @@ function dateTimeStringParser(dateString) {
 }
 
 module.exports = (app) => {
-    app.post('/api/v1/acts', (req, res, next) => {
+    app.route('/api/v1/acts')
+    .post((req, res, next) => {
 
         const {
             actId,
+            username,
             timestamp,
             caption,
             categoryName,
@@ -44,11 +46,6 @@ module.exports = (app) => {
                     });
                 }
 
-                // timestamp checking
-
-
-
-                // imagUrl Checking
 
                 const newPost = new Post();
 
@@ -56,6 +53,7 @@ module.exports = (app) => {
                 newPost.timestamp = timestamp;
                 newPost.caption = caption;
                 newPost.imgUrl = imgB64;
+                newPost.username = username;
                 newPost.category = categoryName;
                 newPost.timestampParsed = dateTimeStringParser(timestamp);
 
@@ -73,5 +71,8 @@ module.exports = (app) => {
                 });
             }
         });
+    })
+    .all((req, res) => {
+        res.status(405).send();
     });
 };

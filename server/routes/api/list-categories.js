@@ -1,9 +1,9 @@
 const Category = require('../../models/Categories');
 const Post = require('../../models/Posts');
 
-//NEED TO CHECK FOR IS DELETED
 module.exports = (app) => {
-    app.get('/api/v1/categories', (req, res, next) => {
+    app.route('/api/v1/categories')
+    .get((req, res, next) => {
         console.log('inside list categories');
 
         Post.aggregate(
@@ -36,8 +36,12 @@ module.exports = (app) => {
                         if (err) {
                             console.log(err);
                             return res.send(500).status({ "error": "Server Error" });
-                        } else {
-                            console.log(cats);
+                        } 
+                        else {
+                            if(cats.length === 0) {
+                                return res.status(204).send();
+                            }
+                            else {
                             const filledData = cats.reduce((acc, cat) => {
                                 let data = { ...acc };
                                 if (!formCatego[cat.name]) {
@@ -50,14 +54,15 @@ module.exports = (app) => {
                             console.log(filledData);
                             return res.status(200).send(filledData);
                         }
+                        }
                     });
                     //return res.status(200).send(formCatego);
                 }
             }
         )
-    });
+    })
 
-    app.post('/api/v1/categories', (req, res, next) => {
+    .post((req, res, next) => {
 
         const {
             name,
@@ -88,14 +93,18 @@ module.exports = (app) => {
                             message: 'Error: Server Error',
                         });
                     } else {
-                        return res.sendStatus(202);
+                        return res.sendStatus(201);
                     }
                 });
             }
         });
+    })
+    .all((req, res) => {
+        res.status(405).send();
     });
 
-    app.delete('/api/v1/categories/:categoryName', (req, res, next) => {
+    app.route('/api/v1/categories/:categoryName')
+    .delete((req, res, next) => {
         const name = req.params.categoryName;
         console.log(name);
         Category.findOne({ name: name, isDeleted: false }, (err, category) => {
@@ -117,10 +126,10 @@ module.exports = (app) => {
                                 message: 'Error: Server Error',
                             });
                         } else {
-                            return res.sendStatus(201);
+                            return res.sendStatus(200);
                         }
                     });
-                }
+                } 
                 else {
                     return res.status(400).send({
                         message: 'Bad Request',
@@ -128,6 +137,9 @@ module.exports = (app) => {
                 }
             }
         });
+    })
+    .all((req, res) => {
+        res.status(405).send();
     });
 };
 

@@ -1,8 +1,8 @@
 const Post = require('../../models/Posts');
 
 module.exports = (app) => {
-    app.get('/api/acts/v1/categories/:categoryName/acts', (req, res) => {
-        console.log('inside list acts');
+    app.route('/api/v1/categories/:categoryName/acts')
+    .get((req, res) => {
 
         const {
             start,
@@ -15,8 +15,8 @@ module.exports = (app) => {
             category: name, 
             isDeleted: false, 
             actId: {
-                $gt: start, 
-                $lt: end,
+                $gte: start, 
+                $lte: end,
             },
         } : {
             category: name, 
@@ -47,7 +47,6 @@ module.exports = (app) => {
                     });
                 }
                 else {
-                    console.log('something');
 
                     const formattedPosts = cats.map((post) => {
                         return {
@@ -63,6 +62,9 @@ module.exports = (app) => {
                     return res.status(200).send(formattedPosts);
                 }
             }
-        });
+        }).sort({timestampParsed: -1});
+    })
+    .all((req, res) => {
+        res.status(405).send();
     });
 };

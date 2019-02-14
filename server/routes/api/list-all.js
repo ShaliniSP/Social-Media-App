@@ -33,6 +33,6 @@ module.exports = (app) => {
                     return res.status(200).send(formattedPosts);
                 }
             }
-        }).sort({timestamp:-1});
+        }).sort({timestampParsed:-1});
     });
 };

@@ -2,7 +2,8 @@ const Post = require('../../models/Posts');
 
 module.exports = (app) => {
 
-    app.get('/api/v1/categories/:categoryName/acts/size', (req, res, next) => {
+    app.route('/api/v1/categories/:categoryName/acts/size')
+    .get((req, res, next) => {
         const name = req.params.categoryName;
 
         console.log(name);
@@ -28,5 +29,9 @@ module.exports = (app) => {
                     }
                 }
             });
+    })
+    .all((req, res) => {
+        res.status(405).send();
     });
-}
+    ;
+};
