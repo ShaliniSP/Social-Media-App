@@ -16,9 +16,24 @@ export default {
     },
 
     // username and password in an object and return is callback
-    signup(unameAndPassword, callback) {
+    login(unameAndPassword, callback) {
         window.fetch(RESTAPI + '/api/account/signin', {
             method: 'POST',
+            body: JSON.stringify(unameAndPassword), })
+        .then(response => response.json())
+        .then(json => {
+            console.log(json);
+            return callback(json);
+        });
+    },
+
+    signup(unameAndPassword, callback) {    
+        window.fetch(RESTAPI + '/api/v1/users', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
             body: JSON.stringify(unameAndPassword), })
         .then(response => response.json())
         .then(json => {
