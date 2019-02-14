@@ -46,8 +46,6 @@ module.exports = (app) => {
                     });
                 }
 
-<<<<<<< HEAD
-=======
                 // timestamp checking
 
                 const parsedTimeStamp = dateTimeStringParser(timestamp);
@@ -56,7 +54,6 @@ module.exports = (app) => {
 
 
                 // imagUrl Checking
->>>>>>> Sanku
 
                 const newPost = new Post();
 
