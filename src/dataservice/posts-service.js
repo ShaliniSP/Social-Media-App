@@ -43,11 +43,25 @@ export default {
     },
 
     getAllPosts(callback) {
-        fetch(RESTAPI + '/api/v1/acts')
+        window.fetch(RESTAPI + '/api/v1/acts')
         .then(resp => resp.json())
         .then(json => {
             console.log('getAllPostsResponse', json);
             return callback(json);
         });
+    },
+
+    getAllCats(callback) {
+        window.fetch(RESTAPI + '/api/v1/categories')
+        .then((resp => {
+            if (resp.status === 200) {
+                return resp.json();
+            } else if (resp.status === 204) {
+                return [];
+            } else {
+                return [];
+            }
+        }))
+        .then(json => callback(json));
     },
 };
