@@ -16,7 +16,7 @@ export default {
     },
 
     // username and password in an object and return is callback
-    signin(unameAndPassword, callback) {
+    login(unameAndPassword, callback) {
         window.fetch(RESTAPI + '/api/account/signin',{
           method:'POST',
           headers: {
@@ -49,11 +49,31 @@ export default {
     },
 
     getAllPosts(callback) {
-        fetch(RESTAPI + '/api/v1/acts')
-        .then(resp => resp.json())
+        window.fetch(RESTAPI + '/api/v1/acts')
+        .then(resp => {
+            if (resp.status === 200) {
+                return resp.json();
+            } else {
+                return [];
+            }
+        })
         .then(json => {
             console.log('getAllPostsResponse', json);
             return callback(json);
         });
+    },
+
+    getAllCats(callback) {
+        window.fetch(RESTAPI + '/api/v1/categories')
+        .then((resp => {
+            if (resp.status === 200) {
+                return resp.json();
+            } else if (resp.status === 204) {
+                return [];
+            } else {
+                return [];
+            }
+        }))
+        .then(json => callback(json));
     },
 };

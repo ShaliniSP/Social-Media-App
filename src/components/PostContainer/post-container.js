@@ -16,6 +16,9 @@ class PostsContainer extends Component {
 
         this.state = {
             posts: [],
+            cats: [],
+            filter: false,
+            filterCat: '',
         };
     }
 
@@ -24,6 +27,14 @@ class PostsContainer extends Component {
             // console.log(posts);
             return this.setState({
                 posts,
+            });
+        });
+
+        postDataService.getAllCats(cats => {
+            console.log(cats);
+
+            return this.setState({
+                cats,
             });
         });
     }
