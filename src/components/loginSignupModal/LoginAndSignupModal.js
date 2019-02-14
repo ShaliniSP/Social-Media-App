@@ -14,7 +14,7 @@ class LoginAndSignUp extends Component {
         this.handleClose = this.handleClose.bind(this);
 
         this.state = {
-            show: true,
+            show: false,
         };
     }
 
