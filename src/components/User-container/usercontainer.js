@@ -100,13 +100,14 @@ class UserContainer extends Component {
 
       const timestampnow = Date.now();
       console.log(new Intl.DateTimeFormat('en-US', {day: '2-digit', month: '2-digit',year: 'numeric',second: '2-digit',minute: '2-digit', hour: '2-digit'}).format(timestampnow));
-      postDataService.upload({
+      postDataService.uploadPost({
         //actid: ,
         username: this.state.uname,
-        timestamp: timestampnow,
+        timestamp: '15-02-2019:56-45-07',
         caption: this.state.caption,
         categoryName: this.state.category,
-        imgB64: this.state.image ,
+        imgB64: this.state.image,
+        actId: Math.floor(Math.random()*1000 + 1),
         },(resp) => {
           console.log(resp);
         })

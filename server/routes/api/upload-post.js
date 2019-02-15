@@ -31,10 +31,10 @@ module.exports = (app) => {
             imgB64,
         } = req.body;
 
-        console.log(actId, timestamp, caption, categoryName, imgB64);
+        // console.log(actId, timestamp, caption, categoryName, imgB64);
 
         Post.find({ actId: actId }, (err, posts) => {
-            console.log(err, posts);
+            // console.log(err, posts);
             if (err) {
                 return res.status(500).send({
                     message: 'Error: Server Error',
@@ -66,10 +66,10 @@ module.exports = (app) => {
                 newPost.timestampParsed = isNaN(parsedTimeStamp) ? undefined : parsedTimeStamp;
                 newPost.username = username;
 
-                console.log(dateTimeStringParser(timestamp));
+                // console.log(dateTimeStringParser(timestamp));
 
                 newPost.save((err, post) => {
-                    console.log(err, post);
+                    // console.log(err, post);
                     if (err) {
                         return res.status(500).send({
                             message: 'Error: Server Error',
