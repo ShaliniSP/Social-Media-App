@@ -14,11 +14,8 @@ import {
 } from 'react-bootstrap';
 import placeholderImg from './../../small_852.jpg';
 
-import base64Img from 'base64-img'
 
-var data = '';
-
-function toDataURL(url, callback) {
+function oldtoDataURL(url, callback) {
   var xhr = new XMLHttpRequest();
   xhr.onload = function() {
     var reader = new FileReader();
@@ -32,19 +29,33 @@ function toDataURL(url, callback) {
   xhr.send();
 }
 
+function toDataURL(url, callback) {
+        var fileToLoad = url;
+        var fileReader = new FileReader();
+        fileReader.onload = function(fileLoadedEvent)
+        {
+            callback(fileLoadedEvent.target.result);
+        };
+        fileReader.readAsDataURL(fileToLoad);
+}
+
+
 class UserContainer extends Component {
     constructor(props, context) {
         super(props, context);
 
         this.state = {
             open: false,
+            uname: '' ,
             posts: [],
             pictures: [],
             image: '',
             capton: '',
+            category: '',
         };
         this.onDrop = this.onDrop.bind(this);
         this.onChangeCaption = this.onChangeCaption.bind(this);
+        this.onChangeCategory = this.onChangeCategory.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
     }
@@ -62,16 +73,36 @@ class UserContainer extends Component {
         });
     }
 
+    onChangeCategory(event) {
+
+        return this.setState({
+            category: event.currentTarget.value,
+        });
+    }
+
     onSubmit() {
-      toDataURL(this.state.pictures[0].name, function(dataUrl) {
-  console.log('RESULT:', dataUrl)
-})
-      //base64Img.base64(this.state.pictures[0].name, function(err, data) {})
-      //var data = base64Img.base64Sync(this.state.pictures[0].name);
-      this.setState({
-          image: data,
-      });
-      console.log(this.state);
+      const astate = this;
+      toDataURL(this.state.pictures[0], function(dataUrl) {
+        console.log('RESULT:', dataUrl);
+        astate.setState({
+            image: dataUrl,
+        });
+      })
+
+
+      const timestampnow = Date.now();
+      console.log(new Intl.DateTimeFormat('en-US', {day: '2-digit', month: '2-digit',year: 'numeric',second: '2-digit',minute: '2-digit', hour: '2-digit'}).format(timestampnow));
+      postDataService.upload({
+        //actid: ,
+        username: this.state.uname,
+        timestamp: timestampnow,
+        caption: this.state.caption,
+        categoryName: this.state.category,
+        imgB64: this.state.image ,
+        },(resp) => {
+          console.log(resp);
+        })
+
     }
 
     render() {
@@ -117,6 +148,14 @@ class UserContainer extends Component {
                         <Form.Control type="text" value={this.state.password} onChange={this.onChangeCaption}/>
                         <Form.Text className="text-muted">
                             Ex. I feel happy.
+                        </Form.Text>
+                    </Form.Group>
+
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Enter Category</Form.Label>
+                        <Form.Control type="text" value={this.state.category} onChange={this.onChangeCategory}/>
+                        <Form.Text className="text-muted">
+                            Ex. Animals
                         </Form.Text>
                     </Form.Group>
                     <Button variant="info" block onClick={this.onSubmit}>
