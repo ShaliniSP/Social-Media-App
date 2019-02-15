@@ -81,7 +81,7 @@ class PostsContainer extends Component {
                     </Dropdown></center>
                 </div>
                 <div>
-                    {this.state.posts === 0 ? <p>No posts to show</p> : this.allPosts()}
+                    {this.state.posts.length === 0 ? <center><p className="erroemsg">No posts to show</p> </center>: this.allPosts()}
                 </div>
             </div>
         );
