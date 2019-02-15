@@ -2,8 +2,8 @@ const User = require('../../models/User');
 
 module.exports = (app) => {
     //remove user
-    app.route('/api/v1/users/:username')
-    .delete((req, res, next) => {
+    //app.route('/api/v1/users/:username')
+    app.delete('/api/v1/users/:username',(req, res, next) => {
         const name = req.params.username;
         //console.log(name);
         User.findOne({username: name, isDeleted: false}, (err,user) => {
@@ -34,7 +34,7 @@ module.exports = (app) => {
             }
         });
     })
-    .all((req, res) => {
+    /*.all((req, res) => {
         res.status(405).send();
-    });
+    })*/;
 };

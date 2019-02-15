@@ -222,8 +222,8 @@ module.exports = (app) => {
         });
     });
 
-    app.route('/api/v1/users')
-        .post((req, res, next) => {
+    //app.route('/api/v1/users')
+        app.post('/api/v1/users', (req, res, next) => {
             const {
                 username,
                 password,
@@ -264,7 +264,7 @@ module.exports = (app) => {
                 });
             });
         })
-        .all((req, res) => {
+        /*.all((req, res) => {
             res.status(405).send();
-        });
+        })*/;
 };

@@ -19,8 +19,8 @@ function dateTimeStringParser(dateString) {
 }
 
 module.exports = (app) => {
-    app.route('/api/v1/acts')
-    .post((req, res, next) => {
+    //app.route('/api/v1/acts')
+    app.post('/api/v1/acts', (req, res, next) => {
 
         const {
             actId,
@@ -29,7 +29,6 @@ module.exports = (app) => {
             caption,
             categoryName,
             imgB64,
-            username,
         } = req.body;
 
         console.log(actId, timestamp, caption, categoryName, imgB64);
@@ -74,7 +73,7 @@ module.exports = (app) => {
             }
         });
     })
-    .all((req, res) => {
-        res.status(405).send();
-    });
+    /*.all((req, res) => {
+        res.status(406).send();
+    })*/;
 };

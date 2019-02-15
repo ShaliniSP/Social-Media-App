@@ -1,8 +1,8 @@
 const Post = require('../../models/Posts');
 
 module.exports = (app) => {
-    app.route('/api/v1/categories/:categoryName/acts')
-    .get((req, res) => {
+    //app.route('/api/v1/categories/:categoryName/acts')
+    app.get('/api/v1/categories/:categoryName/acts', (req, res) => {
 
         const {
             start,
@@ -64,7 +64,7 @@ module.exports = (app) => {
             }
         }).sort({timestampParsed: -1});
     })
-    .all((req, res) => {
+    /*.all((req, res) => {
         res.status(405).send();
-    });
+    })*/;
 };

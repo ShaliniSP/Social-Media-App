@@ -2,8 +2,8 @@ const Category = require('../../models/Categories');
 const Post = require('../../models/Posts');
 
 module.exports = (app) => {
-    app.route('/api/v1/categories')
-    .get((req, res, next) => {
+    //app.route('/api/v1/categories')
+    app.get('/api/v1/categories',(req, res, next) => {
         console.log('inside list categories');
 
         Post.aggregate(
@@ -60,9 +60,9 @@ module.exports = (app) => {
                 }
             }
         )
-    })
+    });
 
-    .post((req, res, next) => {
+    app.post('/api/v1/categories',(req, res, next) => {
 
         const {
             name,
@@ -99,12 +99,12 @@ module.exports = (app) => {
             }
         });
     })
-    .all((req, res) => {
+    /*.all((req, res) => {
         res.status(405).send();
-    });
+    })*/;
 
-    app.route('/api/v1/categories/:categoryName')
-    .delete((req, res, next) => {
+    //app.route('/api/v1/categories/:categoryName')
+    app.delete('/api/v1/categories/:categoryName', (req, res, next) => {
         const name = req.params.categoryName;
         console.log(name);
         Category.findOne({ name: name, isDeleted: false }, (err, category) => {
@@ -138,8 +138,8 @@ module.exports = (app) => {
             }
         });
     })
-    .all((req, res) => {
+    /*.all((req, res) => {
         res.status(405).send();
-    });
+    })*/;
 };
 

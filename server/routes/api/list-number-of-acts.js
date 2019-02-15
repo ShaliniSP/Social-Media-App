@@ -2,8 +2,8 @@ const Post = require('../../models/Posts');
 
 module.exports = (app) => {
 
-    app.route('/api/v1/categories/:categoryName/acts/size')
-    .get((req, res, next) => {
+    //app.route('/api/v1/categories/:categoryName/acts/size')
+    app.get('/api/v1/categories/:categoryName/acts/size',(req, res, next) => {
         const name = req.params.categoryName;
 
         console.log(name);
@@ -30,8 +30,8 @@ module.exports = (app) => {
                 }
             });
     })
-    .all((req, res) => {
+    /*.all((req, res) => {
         res.status(405).send();
-    });
+    })*/;
     ;
 };

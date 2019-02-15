@@ -1,11 +1,12 @@
 const Post = require('../../models/Posts');
 
 module.exports = (app) => {
-    app.route('/api/v1/acts/upvote')
-    .post((req, res) => {
-        const {
+    //app.route('/api/v1/acts/upvote')
+    app.post('/api/v1/acts/upvote', (req, res) => {
+        console.log("UPVOTE");
+        const [
             actId,
-        } = req.body;
+         ] = req.body;
         console.log(actId);
         Post.findOne({ actId: actId }, (err, acts) => {
             console.log(acts);
@@ -22,7 +23,7 @@ module.exports = (app) => {
                     acts.save((err, act) => {
                         if (err) {
                             return res.status(500).send({
-                                message: 'Error: Server Error',
+                                 message: 'Error: Server Error',
                             });
                         }
                         else {
@@ -37,8 +38,8 @@ module.exports = (app) => {
                 }
             }
         });
-    })
-    .all((req, res) => {
-        res.status(405).send();
     });
+    /*.all((req, res) => {
+        res.status(405).send();
+    });*/
 };

@@ -2,8 +2,8 @@ const Post = require('../../models/Posts');
 
 module.exports = (app) => {
 
-    app.route('/api/v1/acts/:actid')
-    .delete((req,res) => {
+    //app.route('/api/v1/acts/:actid')
+    app.delete('/api/v1/acts/:actid',(req,res) => {
         const actId = req.params.actid;
 
         Post.findOne({actId : actId, isDeleted : false}, (err,post) => {
@@ -29,7 +29,7 @@ module.exports = (app) => {
             }
         });
     })
-    .all((req, res) => {
-        res.status(405).send();
-    });
+    /*.all((req, res) => {
+        res.status(406).send();
+    })*/;
 };
