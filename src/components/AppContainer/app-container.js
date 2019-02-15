@@ -23,7 +23,7 @@ class AppContainer extends Component {
         return (
             <div>
 
-                <Navbar collapseOnSelect expand="lg" bg="info" variant="dark">
+                <Navbar collapseOnSelect expand="lg" bg="info" variant="dark" fixed="top">
                     <Navbar.Text className="nav-brand" href="#home" ><h1>SlActs</h1></Navbar.Text>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
