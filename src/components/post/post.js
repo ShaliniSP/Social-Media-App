@@ -23,15 +23,18 @@ class Post extends Component {
         return (
             <div className="postholder">
                 <Card>
-                    <Card.Img variant="top" src={placeholderImg}>
+                    <Card.Header>
+                        <span className="usernamehead"><b>{'@' + this.state.post.username}</b></span>
+                        <span className="actidhead"><i>{'#' + this.state.post.actId}</i></span>
 
-                    </Card.Img>
+                    </Card.Header>
+                    <Card.Img variant="top" src={placeholderImg}></Card.Img>
 
                     <Card.Body>
-                        <Button variant="link">
-                            {'^' + this.state.post.upvotes}
-                        </Button>
-                        {this.state.upvotes}
+                        <span><Button className="upvotebut"><b>^</b></Button></span>
+                        <span className="upvotecount">{this.state.post.upvotes}</span>
+                        <span><Button className="delbut"><b>x</b></Button></span>
+
                         <Card.Text>
                             {this.state.post.caption}
                         </Card.Text>

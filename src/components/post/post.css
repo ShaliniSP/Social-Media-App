@@ -1,3 +1,51 @@
 .postholder {
     margin-top: 1em;
 }
+
+.actidhead{
+    float:right;
+    color:#17a2b8;
+}
+
+.usernamehead{
+    float:left;
+    color: black;
+}
+
+.upvotebut{
+    border-radius: 20px;
+    background-color: white;
+    border-color: white;
+    color: #17a2b8;
+    font-size: 40px;
+    margin: 0%;
+    padding-left: 0.5em;
+    padding-right: 0.5em;   
+    padding-bottom: 0em;
+    padding-top: 0em; 
+}
+
+.upvotebut:hover{
+    background-color: white;
+    color: red;
+    border-color: white;
+}
+
+.upvotecount{
+    font-size: 30px;
+}
+
+.delbut{
+    float:right;
+    color: white;
+    background-color: red;
+    border-color: red;
+    margin-top:5px;
+}
+
+.delbut:hover{
+    float:right;
+    color: black;
+    background-color: red;
+    border-color: red;
+}

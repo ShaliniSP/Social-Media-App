@@ -46,6 +46,14 @@ module.exports = (app) => {
                     });
                 }
 
+                // timestamp checking
+
+                const parsedTimeStamp = dateTimeStringParser(timestamp);
+
+                // console.log('parsedTimeStamp:', isNaN(parsedTimeStamp));
+
+
+                // imagUrl Checking
 
                 const newPost = new Post();
 
@@ -55,7 +63,7 @@ module.exports = (app) => {
                 newPost.imgUrl = imgB64;
                 newPost.username = username;
                 newPost.category = categoryName;
-                newPost.timestampParsed = dateTimeStringParser(timestamp);
+                newPost.timestampParsed = isNaN(parsedTimeStamp) ? undefined : parsedTimeStamp;
                 newPost.username = username;
 
                 console.log(dateTimeStringParser(timestamp));

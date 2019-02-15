@@ -124,7 +124,7 @@ module.exports = (app) => {
                 });
             } else {
                 const user = users[0];
-                console.log(password, user.password);
+                //console.log(password, user.password);
                 if (user.password !== password) {
                     return res.send({
                         success: false,
@@ -243,7 +243,7 @@ module.exports = (app) => {
 
             User.find({ username }, (err, user) => {
                 if (err) {
-                    return res.status(500).send({});  
+                    return res.status(500).send({});
                 }
 
                 if (user.length !== 0) {
@@ -266,5 +266,10 @@ module.exports = (app) => {
         })
         /*.all((req, res) => {
             res.status(405).send();
+<<<<<<< HEAD
         })*/;
 };
+=======
+        });
+    };
+>>>>>>> f1807b6d19e60b1bfa2e11a1c4913cb2aa5d6b3e
