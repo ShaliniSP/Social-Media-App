@@ -10,6 +10,7 @@ import {
     Button,
     Card,
     Collapse,
+    Image,
 
 } from 'react-bootstrap';
 import placeholderImg from './../../small_852.jpg';
@@ -27,16 +28,6 @@ function oldtoDataURL(url, callback) {
   xhr.open('GET', url);
   xhr.responseType = 'blob';
   xhr.send();
-}
-
-function toDataURL(url, callback) {
-        var fileToLoad = url;
-        var fileReader = new FileReader();
-        fileReader.onload = function(fileLoadedEvent)
-        {
-            callback(fileLoadedEvent.target.result);
-        };
-        fileReader.readAsDataURL(fileToLoad);
 }
 
 
@@ -57,13 +48,30 @@ class UserContainer extends Component {
         this.onChangeCaption = this.onChangeCaption.bind(this);
         this.onChangeCategory = this.onChangeCategory.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-
+        this.toDataURL = this.toDataURL.bind(this);
     }
 
     onDrop(picture) {
         this.setState({
             pictures: this.state.pictures.concat(picture),
         });
+
+        this.toDataURL(picture[0], result => {
+            return this.setState({
+              image: result,
+            });
+        });
+    }
+
+    toDataURL(url, callback) {
+            var fileToLoad = url;
+            console.log(url);
+            var fileReader = new FileReader();
+            fileReader.onload = function(fileLoadedEvent)
+            {
+                callback(fileLoadedEvent.target.result);
+            };
+            fileReader.readAsDataURL(fileToLoad);
     }
 
     onChangeCaption(event) {
@@ -75,6 +83,7 @@ class UserContainer extends Component {
 
     onChangeCategory(event) {
 
+
         return this.setState({
             category: event.currentTarget.value,
         });
@@ -82,13 +91,12 @@ class UserContainer extends Component {
 
     onSubmit() {
       const astate = this;
-      toDataURL(this.state.pictures[0], function(dataUrl) {
-        console.log('RESULT:', dataUrl);
-        astate.setState({
-            image: dataUrl,
-        });
-      })
-
+      // this.toDataURL(this.state.pictures[0], function(dataUrl) {
+      //   console.log('RESULT:', dataUrl);
+      //   astate.setState({
+      //       image: dataUrl,
+      //   });
+      // })
 
       const timestampnow = Date.now();
       console.log(new Intl.DateTimeFormat('en-US', {day: '2-digit', month: '2-digit',year: 'numeric',second: '2-digit',minute: '2-digit', hour: '2-digit'}).format(timestampnow));
@@ -109,9 +117,12 @@ class UserContainer extends Component {
         const { open } = this.state;
         return (
 
+
           <div className="UserContainer">
           <p> </p>
           <>
+
+
             <Button
               className="first"
               variant="info"
@@ -125,22 +136,33 @@ class UserContainer extends Component {
 
             <Collapse in={this.state.open}>
             <Card>
-                <Card.Header>
+                <p className="text-muted">Click to expand </p>
 
-                </Card.Header>
+                { this.state.pictures.length !==0 ?
+                  <Card.Img src={this.state.image} className="uploaded"></Card.Img>
+                  :
+                  <div>
+                  <Form.Label>
+                    Choose Image
+                  </Form.Label>
+                  <ImageUploader
+                      className="upload-img"
+                      withIcon={true}
+                      buttonText='Choose image'
+                      onChange={this.onDrop}
+                      imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                      maxFileSize={5242880}
+                  />
+                  </div>
+
+              }
 
                 <Card.Body>
                 <Form className='form'>
                     <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Choose Image
-                    </Form.Label>
-                    <ImageUploader
-                        withIcon={true}
-                        buttonText='Choose images'
-                        onChange={this.onDrop}
-                        imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                        maxFileSize={5242880}
-                    />
+
+
+
                     </Form.Group>
 
                     <Form.Group controlId="formBasicPassword">
