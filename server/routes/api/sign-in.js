@@ -266,10 +266,5 @@ module.exports = (app) => {
         })
         /*.all((req, res) => {
             res.status(405).send();
-<<<<<<< HEAD
         })*/;
 };
-=======
-        });
-    };
->>>>>>> f1807b6d19e60b1bfa2e11a1c4913cb2aa5d6b3e
