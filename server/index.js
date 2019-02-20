@@ -47,10 +47,10 @@ app.use(express.static(path.resolve(__dirname, '../build')));
 // app.get('*', function(req, res) {
 //   res.status(200).send({ message: 'Done' });
 // });
-app.route('*')
-.all( function(req, res) {
+app.route('*').all(function(req, res) {
   res.status(405).send({ message: 'Method not allowed'});
 });
+
 app.listen(port, '0.0.0.0', (err) => {
   if (err) {
     console.log(err);

@@ -60,12 +60,7 @@ const PostSchema = new mongoose.Schema({
     isDeleted: {
         type: Boolean,
         default: false,
-    },
-    username: {
-        type: String,
-        default: ''
-    }
-        
+    },        
 });
 
 module.exports = mongoose.model('Post', PostSchema);

@@ -4,6 +4,8 @@ import { Navbar, Container, Row, Col, Nav } from 'react-bootstrap';
 
 import PostsContainer from './../PostContainer/post-container.js';
 
+import UserContainer from './../User-container/usercontainer.js';
+
 class AppContainer extends Component {
     constructor(props, context) {
         super(props, context);
@@ -23,7 +25,7 @@ class AppContainer extends Component {
         return (
             <div>
 
-                <Navbar collapseOnSelect expand="lg" bg="info" variant="dark">
+                <Navbar collapseOnSelect expand="lg" bg="info" variant="dark" fixed="top">
                     <Navbar.Text className="nav-brand" href="#home" ><h1>SlActs</h1></Navbar.Text>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
@@ -42,7 +44,7 @@ class AppContainer extends Component {
                         <Col xs={0} md={3}>
                         </Col>
                         <Col xs={12} md={6}>
-                            <PostsContainer />
+                            <UserContainer />
                         </Col>
                         <Col xs={0} md={3}>
                         </Col>

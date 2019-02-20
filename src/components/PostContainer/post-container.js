@@ -12,11 +12,14 @@ class PostsContainer extends Component {
         super(props, context);
 
         this.allPosts = this.allPosts.bind(this);
-        // this.handleClose = this.handleClose.bind(this);
+        this.delActId = this.delActId.bind(this);
+        this.removePost = this.removePost.bind(this);
+        this.allCats = this.allCats.bind(this);
+
 
         this.state = {
             posts: [],
-            cats: [],
+            cats: {},
             filter: false,
             filterCat: '',
         };
@@ -40,22 +43,40 @@ class PostsContainer extends Component {
     }
 
     allPosts() {
-        return this.state.posts.map((post => <Post post={post} key={`post${post._id}`} />));
+        return this.state.posts.map((post => <Post post={post} key={`post${post._id}`} onDelete={this.delActId} />));
+    }
+
+    allCats() {
+        // return Object.keys(this.state.cat).map((cat => <Dropdown.Item >{cat}</Dropdown.Item>));
+        return console.log(Object.keys(this.state.cats));
+    }
+
+    delActId(actId) {
+        postDataService.deletePost(actId, (resp) => {
+            console.log(resp);
+        });
+        this.setState({
+            posts: this.state.posts.filter(post => post.actId !== actId)
+        });
+        console.log(this.state);
+
+    }
+
+    removePost() {
+        console.log(this.state);
     }
 
     render() {
         return (
             <div className="postsContainer">
-                <div>   
+                <div>
                     <center><Dropdown>
                         <Dropdown.Toggle variant="info" id="dropdown-basic">
                             Categories
                     </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                            {this.state.allCats}
                         </Dropdown.Menu>
                     </Dropdown></center>
                 </div>
