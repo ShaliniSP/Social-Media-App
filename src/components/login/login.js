@@ -29,7 +29,6 @@ class LoginComp extends Component {
   }
 
   onSubmit() {
-      const astate = this;
       console.log(this.state);
       console.log(sha1(this.state.password));
       postDataService.signin({
@@ -38,7 +37,7 @@ class LoginComp extends Component {
         },(resp) => {
           console.log(resp);
           document.cookie = 'token=' + resp.token;
-          return astate.setState({
+          this.setState({
             show: false,
           });
         })

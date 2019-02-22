@@ -30,6 +30,7 @@ class SignupComp extends Component {
     }
 
     onSubmit() {
+        const { show } = this.state;
         console.log(this.state);
         console.log(sha1(this.state.password));
         postDataService.signup({
@@ -38,6 +39,7 @@ class SignupComp extends Component {
           },(resp) => {
             console.log(resp);
           })
+          this.setState({ show: !show })
         }
 
     onChangeUname(event) {

@@ -36,7 +36,7 @@ class UserContainer extends Component {
         super(props, context);
 
         this.state = {
-            open: false,
+            open: true,
             uname: '' ,
             posts: [],
             pictures: [],
@@ -65,7 +65,7 @@ class UserContainer extends Component {
 
     toDataURL(url, callback) {
             var fileToLoad = url;
-            console.log(url);
+            //console.log(url);
             var fileReader = new FileReader();
             fileReader.onload = function(fileLoadedEvent)
             {
@@ -90,17 +90,18 @@ class UserContainer extends Component {
     }
 
     onSubmit() {
-      const astate = this;
+      const { open } = this.state;
       // this.toDataURL(this.state.pictures[0], function(dataUrl) {
       //   console.log('RESULT:', dataUrl);
       //   astate.setState({
       //       image: dataUrl,
       //   });
       // })
+      this.setState({ open: !open })
 
       const timestampnow = Date.now();
-      console.log(new Intl.DateTimeFormat('en-US', {day: '2-digit', month: '2-digit',year: 'numeric',second: '2-digit',minute: '2-digit', hour: '2-digit'}).format(timestampnow));
-      postDataService.upload({
+      //console.log(new Intl.DateTimeFormat('en-US', {day: '2-digit', month: '2-digit',year: 'numeric',second: '2-digit',minute: '2-digit', hour: '2-digit'}).format(timestampnow));
+      postDataService.uploadPost({
         //actid: ,
         username: this.state.uname,
         timestamp: timestampnow,
@@ -109,6 +110,16 @@ class UserContainer extends Component {
         imgB64: this.state.image ,
         },(resp) => {
           console.log(resp);
+        })
+        alert("uploaded");
+         this.setState({
+            open: false,
+            uname: '' ,
+            posts: [],
+            pictures: [],
+            image: '',
+            capton: '',
+            category: '',
         })
 
     }
@@ -119,7 +130,6 @@ class UserContainer extends Component {
 
 
           <div className="UserContainer">
-          <p> </p>
           <>
 
 
