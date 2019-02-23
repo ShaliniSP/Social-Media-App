@@ -3,32 +3,30 @@ import React, { Component } from 'react';
 import './usercontainer.css';
 import ImageUploader from 'react-images-upload';
 import postDataService from './../../dataservice/posts-service.js';
-import Post from './../post/post.js';
+// import Post from './../post/post.js';
 
 import {
     Form,
     Button,
     Card,
     Collapse,
-    Image,
-
 } from 'react-bootstrap';
-import placeholderImg from './../../small_852.jpg';
+// import placeholderImg from './../../small_852.jpg';
 
 
-function oldtoDataURL(url, callback) {
-  var xhr = new XMLHttpRequest();
-  xhr.onload = function() {
-    var reader = new FileReader();
-    reader.onloadend = function() {
-      callback(reader.result);
-    }
-    reader.readAsDataURL(xhr.response);
-  };
-  xhr.open('GET', url);
-  xhr.responseType = 'blob';
-  xhr.send();
-}
+// function oldtoDataURL(url, callback) {
+//   var xhr = new XMLHttpRequest();
+//   xhr.onload = function() {
+//     var reader = new FileReader();
+//     reader.onloadend = function() {
+//       callback(reader.result);
+//     }
+//     reader.readAsDataURL(xhr.response);
+//   };
+//   xhr.open('GET', url);
+//   xhr.responseType = 'blob';
+//   xhr.send();
+// }
 
 
 class UserContainer extends Component {
@@ -90,7 +88,7 @@ class UserContainer extends Component {
     }
 
     onSubmit() {
-      const astate = this;
+      // const astate = this;
       // this.toDataURL(this.state.pictures[0], function(dataUrl) {
       //   console.log('RESULT:', dataUrl);
       //   astate.setState({
