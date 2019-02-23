@@ -2,6 +2,7 @@ import React, { Component, } from 'react';
 import './post-container.css';
 
 import { Dropdown, } from 'react-bootstrap';
+import { DropDownList } from '@progress/kendo-react-dropdowns';
 
 import postDataService from './../../dataservice/posts-service.js';
 import Post from './../post/post.js';
@@ -48,7 +49,10 @@ class PostsContainer extends Component {
 
     allCats() {
         // return Object.keys(this.state.cat).map((cat => <Dropdown.Item >{cat}</Dropdown.Item>));
-        return console.log(Object.keys(this.state.cats));
+        //return console.log("Categories: "+Object.keys(this.state.cats).length);
+        for (var index in this.state.cats) {
+            return index;
+        }
     }
 
     delActId(actId) {
@@ -70,18 +74,24 @@ class PostsContainer extends Component {
         return (
             <div className="postsContainer">
                 <div>
-                    <center><Dropdown>
-                        <Dropdown.Toggle variant="info" id="dropdown-basic">
+                    {/* <center><Dropdown>
+                        <Dropdown.Toggle variant="info" id="dropdown-basic" >
                             Categories
                     </Dropdown.Toggle>
 
-                        <Dropdown.Menu>
-                            {this.state.allCats}
-                        </Dropdown.Menu>
+                        
                     </Dropdown></center>
+                    <center>
+                        <select>
+                            {(this.state.cat).map((cats) => <option key={cats.value} value={cats.value}>{cats.display}</option>)}
+                        </select>
+                    </center> */}
+                    <DropDownList>
+                        {this.state.cats}
+                    </DropDownList>
                 </div>
                 <div>
-                    {this.state.posts.length === 0 ? <center><p className="errormsg">No posts to show</p> </center>: this.allPosts()}
+                    {this.state.posts.length === 0 ? <center><p className="errormsg">No posts to show</p> </center> : this.allPosts()}
                 </div>
             </div>
         );

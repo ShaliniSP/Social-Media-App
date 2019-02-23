@@ -56,7 +56,7 @@ class Post extends Component {
                 <Card>
                     <Card.Header>
                         <span className="usernamehead"><b>{'@' + this.state.post.username}</b></span>
-                        <span className="actidhead"><i>{'#' + this.state.post.actId+':'+this.state.post.category}</i></span>
+                        <span className="actidhead"><i>{'<#' + this.state.post.actId+'> '+this.state.post.category}</i></span>
 
                     </Card.Header>
                     <Card.Img variant="top" src={placeholderImg}></Card.Img>
