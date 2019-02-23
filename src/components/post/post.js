@@ -33,8 +33,12 @@ class Post extends Component {
 
     upvoteFun(upvotes) {
         console.log('before:' + this.props.post.upvotes);
-        postDataService.upvoteAct(this.state.post.upvotes, (resp) => {
+        postDataService.upvoteAct(this.state.post.actId, (resp) => {
             console.log(resp);
+            this.setState({ post: {
+                ...this.state.post,
+                upvotes: this.state.post.upvotes + 1,
+            } })
         });
 
         this.setState({
