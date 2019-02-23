@@ -8,6 +8,7 @@ module.exports = (app) => {
 
         Post.aggregate(
             [
+                { $match: { isDeleted: false } },
                 {
                     $group: {
                         _id: '$category',
