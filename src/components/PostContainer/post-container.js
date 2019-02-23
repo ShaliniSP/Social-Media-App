@@ -47,8 +47,8 @@ class PostsContainer extends Component {
     }
 
     allCats() {
-        // return Object.keys(this.state.cat).map((cat => <Dropdown.Item >{cat}</Dropdown.Item>));
-        return console.log(Object.keys(this.state.cats));
+        return Object.keys(this.state.cats).map((cat => <p key={`categ-${cat}`}>{cat}</p>));
+        // return console.log(Object.keys(this.state.cats));
     }
 
     delActId(actId) {
@@ -59,7 +59,6 @@ class PostsContainer extends Component {
             posts: this.state.posts.filter(post => post.actId !== actId)
         });
         console.log(this.state);
-
     }
 
     removePost() {
@@ -70,18 +69,22 @@ class PostsContainer extends Component {
         return (
             <div className="postsContainer">
                 <div>
-                    <center><Dropdown>
+                    <Dropdown>
                         <Dropdown.Toggle variant="info" id="dropdown-basic">
                             Categories
-                    </Dropdown.Toggle>
+                        </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            {this.state.allCats}
+                            {
+                                Object.keys(this.state.cats)
+                                .map(cat => <Dropdown.Item key={`categ${cat}`}>{cat}</Dropdown.Item>)
+                            }
                         </Dropdown.Menu>
-                    </Dropdown></center>
+                    </Dropdown>
+
                 </div>
                 <div>
-                    {this.state.posts.length === 0 ? <center><p className="erroemsg">No posts to show</p> </center>: this.allPosts()}
+                    {this.state.posts.length === 0 ? <center><p className="erroemsg">No posts to show</p> </center> : this.allPosts()}
                 </div>
             </div>
         );
