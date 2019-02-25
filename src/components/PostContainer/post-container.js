@@ -20,8 +20,8 @@ class PostsContainer extends Component {
         this.state = {
             posts: [],
             cats: {},
-            filter: false,
-            filterCat: '',
+            filter: true,
+            filterCat: 'category_xyz',
         };
     }
 
@@ -43,7 +43,10 @@ class PostsContainer extends Component {
     }
 
     allPosts() {
-        return this.state.posts.map((post => <Post post={post} key={`post${post._id}`} onDelete={this.delActId} />));
+        const filteredPosts = this.state.filter ? 
+        this.state.posts.filter(post => post.category === this.state.filterCat) 
+        : this.state.posts;
+        return filteredPosts.map((post => <Post post={post} key={`post${post._id}`} onDelete={this.delActId} />));
     }
 
     allCats() {
@@ -75,6 +78,7 @@ class PostsContainer extends Component {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
+                            <Dropdown.Item key={`categ${'clear'}`}>{'Clear'}</Dropdown.Item>
                             {
                                 Object.keys(this.state.cats)
                                 .map(cat => <Dropdown.Item key={`categ${cat}`}>{cat}</Dropdown.Item>)
