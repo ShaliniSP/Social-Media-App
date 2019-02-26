@@ -5,7 +5,7 @@
         box-sizing: content-box;
         width: 100%;
         min-height: 100%;
-        padding: 20px;
+        padding: 5px;
         overflow: hidden;
         border: none;
         -o-text-overflow: ellipsis;

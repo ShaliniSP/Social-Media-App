@@ -3,17 +3,15 @@ import React, { Component } from 'react';
 import './usercontainer.css';
 import ImageUploader from 'react-images-upload';
 import postDataService from './../../dataservice/posts-service.js';
-import Post from './../post/post.js';
+// import Post from './../post/post.js';
 
 import {
     Form,
     Button,
     Card,
     Collapse,
-    Image,
-
 } from 'react-bootstrap';
-import placeholderImg from './../../small_852.jpg';
+// import placeholderImg from './../../small_852.jpg';
 
 
 function oldtoDataURL(url, callback) {

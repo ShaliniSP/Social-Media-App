@@ -20,8 +20,8 @@ class PostsContainer extends Component {
         this.state = {
             posts: [],
             cats: {},
-            filter: false,
-            filterCat: '',
+            filter: true,
+            filterCat: 'category_xyz',
         };
     }
 
@@ -43,15 +43,15 @@ class PostsContainer extends Component {
     }
 
     allPosts() {
-        return this.state.posts.map((post => <Post post={post} key={`post${post._id}`} onDelete={this.delActId} />));
+        const filteredPosts = this.state.filter ? 
+        this.state.posts.filter(post => post.category === this.state.filterCat) 
+        : this.state.posts;
+        return filteredPosts.map((post => <Post post={post} key={`post${post._id}`} onDelete={this.delActId} />));
     }
 
     allCats() {
-        // return Object.keys(this.state.cat).map((cat => <Dropdown.Item >{cat}</Dropdown.Item>));
-        //return console.log("Categories: "+Object.keys(this.state.cats).length);
-        for (var index in this.state.cats) {
-            return index;
-        }
+        return Object.keys(this.state.cats).map((cat => <p key={`categ-${cat}`}>{cat}</p>));
+        // return console.log(Object.keys(this.state.cats));
     }
 
     delActId(actId) {
@@ -62,7 +62,6 @@ class PostsContainer extends Component {
             posts: this.state.posts.filter(post => post.actId !== actId)
         });
         console.log(this.state);
-
     }
 
     removePost() {
@@ -73,24 +72,23 @@ class PostsContainer extends Component {
         return (
             <div className="postsContainer">
                 <div>
-                    {/* <center><Dropdown>
-                        <Dropdown.Toggle variant="info" id="dropdown-basic" >
+                    <Dropdown>
+                        <Dropdown.Toggle variant="info" id="dropdown-basic">
                             Categories
-                    </Dropdown.Toggle>
+                        </Dropdown.Toggle>
 
-                        
-                    </Dropdown></center>
-                    <center>
-                        <select>
-                            {(this.state.cat).map((cats) => <option key={cats.value} value={cats.value}>{cats.display}</option>)}
-                        </select>
-                    </center> */}
-                    <DropDownList>
-                        {this.state.cats}
-                    </DropDownList>
+                        <Dropdown.Menu>
+                            <Dropdown.Item key={`categ${'clear'}`}>{'Clear'}</Dropdown.Item>
+                            {
+                                Object.keys(this.state.cats)
+                                .map(cat => <Dropdown.Item key={`categ${cat}`}>{cat}</Dropdown.Item>)
+                            }
+                        </Dropdown.Menu>
+                    </Dropdown>
+
                 </div>
                 <div>
-                    {this.state.posts.length === 0 ? <center><p className="errormsg">No posts to show</p> </center> : this.allPosts()}
+                    {this.state.posts.length === 0 ? <center><p className="erroemsg">No posts to show</p> </center> : this.allPosts()}
                 </div>
             </div>
         );
