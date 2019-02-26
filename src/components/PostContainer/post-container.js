@@ -21,7 +21,7 @@ class PostsContainer extends Component {
             posts: [],
             cats: {},
             filter: false,
-            filterCat: 'category_xyz',
+            filterCat: 'All Posts',
         };
     }
 
@@ -43,9 +43,9 @@ class PostsContainer extends Component {
     }
 
     allPosts() {
-        const filteredPosts = this.state.filter ? 
-        this.state.posts.filter(post => post.category === this.state.filterCat) 
-        : this.state.posts;
+        const filteredPosts = this.state.filter ?
+            this.state.posts.filter(post => post.category === this.state.filterCat)
+            : this.state.posts;
         return filteredPosts.map((post => <Post post={post} key={`post${post._id}`} onDelete={this.delActId} />));
     }
 
@@ -68,27 +68,28 @@ class PostsContainer extends Component {
         console.log(this.state);
     }
 
+
     render() {
         return (
             <div className="postsContainer">
                 <div>
-                    <Dropdown>
+                    <center><Dropdown>
                         <Dropdown.Toggle variant="info" id="dropdown-basic">
                             Categories
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item key={`categ${'clear'}`}>{'Clear'}</Dropdown.Item>
+                            <Dropdown.Item key={`categ${'allposts'}`} onClick={() => this.setState({ filter: false })}>{'All Posts'}</Dropdown.Item>
                             {
                                 Object.keys(this.state.cats)
-                                .map(cat => <Dropdown.Item key={`categ${cat}`}>{cat}</Dropdown.Item>)
+                                    .map(cat => <Dropdown.Item key={`categ${cat}`} onClick={() => this.setState({ filter: true, filterCat: cat })} >{cat}</Dropdown.Item>)
                             }
                         </Dropdown.Menu>
-                    </Dropdown>
+                    </Dropdown></center>
 
                 </div>
                 <div>
-                    {this.state.posts.length === 0 ? <center><p className="erroemsg">No posts to show</p> </center> : this.allPosts()}
+                    {this.state.posts.length === 0 ? <center><p className="errormsg">No posts to show</p> </center> : this.allPosts()}
                 </div>
             </div>
         );

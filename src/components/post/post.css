@@ -4,7 +4,7 @@
 
 .actidhead{
     float:right;
-    color:#17a2b8;
+    color: darkgrey;
 }
 
 .usernamehead{
@@ -48,4 +48,9 @@
     color: black;
     background-color: red;
     border-color: red;
+}
+
+.card {
+    border: 2px solid darkgray;
+    margin: 40px;
 }

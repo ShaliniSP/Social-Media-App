@@ -19,7 +19,7 @@ class UserContainer extends Component {
         this.state = {
             open: true,
             actid: '',
-            uname: 'san' ,
+            uname: 'san',
             posts: [],
             pictures: [],
             image: '',
@@ -40,19 +40,18 @@ class UserContainer extends Component {
 
         this.toDataURL(picture[0], result => {
             return this.setState({
-              image: result,
+                image: result,
             });
         });
     }
 
     toDataURL(url, callback) {
-            var fileToLoad = url;
-            var fileReader = new FileReader();
-            fileReader.onload = function(fileLoadedEvent)
-            {
-                callback(fileLoadedEvent.target.result);
-            };
-            fileReader.readAsDataURL(fileToLoad);
+        var fileToLoad = url;
+        var fileReader = new FileReader();
+        fileReader.onload = function (fileLoadedEvent) {
+            callback(fileLoadedEvent.target.result);
+        };
+        fileReader.readAsDataURL(fileToLoad);
     }
 
     onChangeCaption(event) {
@@ -71,24 +70,24 @@ class UserContainer extends Component {
     }
 
     onSubmit() {
-      this.setState({ open: !this.state.open })
-      const payload = {
-        actId: Math.floor(Math.random() * 100000 % 10000),
-        username: this.state.uname,
-        timestamp: '22-78-7876:39:17:75',
-        caption: this.state.caption,
-        categoryName: this.state.category,
-        imgB64: this.state.image ,
+        this.setState({ open: !this.state.open })
+        const payload = {
+            actId: Math.floor(Math.random() * 100000 % 10000),
+            username: this.state.uname,
+            timestamp: '22-78-7876:39:17:75',
+            caption: this.state.caption,
+            categoryName: this.state.category,
+            imgB64: this.state.image,
         };
 
-      postDataService.uploadPost(payload,(resp) => {
-          console.log(resp);
+        postDataService.uploadPost(payload, (resp) => {
+            console.log(resp);
         })
         alert("uploaded");
-         this.setState({
+        this.setState({
             open: false,
             actid: '',
-            uname: '' ,
+            uname: '',
             posts: [],
             pictures: [],
             image: '',
@@ -99,15 +98,13 @@ class UserContainer extends Component {
     }
 
     render() {
-        const { open } = this.state;
+        //const { open } = this.state;
         return (
 
 
-          <div className="UserContainer">
-          <>
+            <div className="UserContainer">
 
-
-            <Button
+                {/* <Button
               className="first"
               variant="info"
               onClick={() => this.setState({ open: !open })}
@@ -115,66 +112,65 @@ class UserContainer extends Component {
               aria-expanded={open}
               block
             >
-              Create new Post
-            </Button>
+              +
+            </Button> */}
 
-            <Collapse in={this.state.open}>
-            <Card>
-                <p className="text-muted">Click to expand </p>
+                <Collapse in={this.state.open}>
+                    <Card>
+                        <Card.Header>Post</Card.Header>
+                        {this.state.pictures.length !== 0 ?
+                            <Card.Img src={this.state.image} className="uploaded"></Card.Img>
+                            :
+                            <div>
 
-                { this.state.pictures.length !==0 ?
-                  <Card.Img src={this.state.image} className="uploaded"></Card.Img>
-                  :
-                  <div>
-                  <Form.Label>
-                    Choose Image
-                  </Form.Label>
-                  <ImageUploader
-                      className="upload-img"
-                      withIcon={true}
-                      buttonText='Choose image'
-                      onChange={this.onDrop}
-                      imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                      maxFileSize={5242880}
-                  />
-                  </div>
+                                <ImageUploader
+                                    className="upload-img"
+                                    withIcon={true}
+                                    buttonText='Choose image'
+                                    onChange={this.onDrop}
+                                    imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                                    maxFileSize={5242880}
+                                />
+                            </div>
 
-              }
+                        }
 
-                <Card.Body>
-                <Form className='form'>
-                    <Form.Group controlId="formBasicEmail">
+                        <Card.Body>
+                            <Form className='form'>
+                                <Form.Group controlId="formBasicEmail">
 
 
 
-                    </Form.Group>
+                                </Form.Group>
 
-                    <Form.Group controlId="formBasicPassword">
-                        <Form.Label>Caption</Form.Label>
-                        <Form.Control type="text" value={this.state.password} onChange={this.onChangeCaption}/>
-                        <Form.Text className="text-muted">
-                            Ex. I feel happy.
+                                <Form.Group controlId="formBasicPassword">
+                                    <Form.Label>Caption</Form.Label>
+                                    <Form.Control type="text" value={this.state.password} onChange={this.onChangeCaption} />
+                                    <Form.Text className="text-muted">
+                                        Ex. I feel happy.
                         </Form.Text>
-                    </Form.Group>
+                                </Form.Group>
 
-                    <Form.Group controlId="formBasicPassword">
-                        <Form.Label>Enter Category</Form.Label>
-                        <Form.Control type="text" value={this.state.category} onChange={this.onChangeCategory}/>
-                        <Form.Text className="text-muted">
-                            Ex. Animals
-                        </Form.Text>
-                    </Form.Group>
+                                <Form.Group controlId="formBasicPassword">
+                                    <Form.Label>Enter Category</Form.Label>
+                                    <Form.Control type="text" value={this.state.category} onChange={this.onChangeCategory} />
+                                    <Form.Text className="text-muted">
+                                        Ex. Animals
+                                    </Form.Text>
+                                </Form.Group>
+                                <center>
+                                    <Button variant="info" block onClick={this.onSubmit} className="lastupload">
+                                        Upload Act
+                                    </Button>
+                                </center>
 
-                    <Button variant="info" block onClick={this.onSubmit}>
-                        Upload
-                    </Button>
-                </Form>
-                </Card.Body>
+                            </Form>
+                        </Card.Body>
 
-            </Card>
-            </Collapse>
-          </>
-          </div>
+                    </Card>
+                </Collapse>
+
+            </div>
         );
 
     }
