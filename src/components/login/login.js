@@ -70,7 +70,7 @@ class LoginComp extends Component {
     render() {
         return (
             <Form className='form'>
-                <Form.Group controlId="formBasicEmail">
+                <Form.Group controlId="formBasicEmailLogin">
                 <Form.Label>User Name</Form.Label>
                 <Form.Control type="text" placeholder="Enter User Name" value={this.state.uname} onChange={this.onChangeUname}/>
                 <Form.Text className="text-muted">
@@ -78,7 +78,7 @@ class LoginComp extends Component {
                 </Form.Text>
                 </Form.Group>
 
-                <Form.Group controlId="formBasicPassword">
+                <Form.Group controlId="formBasicPasswordLogin">
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
                 </Form.Group>

@@ -14,14 +14,15 @@ class LoginAndSignUp extends Component {
         this.handleClose = this.handleClose.bind(this);
 
         this.state = {
-            show: true,
+            show: props.modalState,
         };
     }
 
     handleClose() {
-        return this.setState({
+        this.setState({
             show: false,
         });
+        return this.props.onModalClose();
     }
 
     handleShow() {
@@ -33,7 +34,7 @@ class LoginAndSignUp extends Component {
     render() {
         return (
             <div>
-                <Modal show={this.state.show} onHide={this.handleClose} centered>
+                <Modal show={this.props.modalState} onHide={this.handleClose} centered>
                     <Modal.Header closeButton>
                         <Modal.Title>
                             Login Or Signup on Slacts
