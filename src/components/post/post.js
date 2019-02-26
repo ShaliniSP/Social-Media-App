@@ -57,7 +57,7 @@ class Post extends Component {
     render() {
         return (
             <div className="postholder">
-                <Card>
+                <Card className="card">
                     <Card.Header>
                         <span className="usernamehead"><b>{'@' + this.state.post.username}</b></span>
                         <span className="actidhead"><i>{'<#' + this.state.post.actId+'> '+this.state.post.category}</i></span>

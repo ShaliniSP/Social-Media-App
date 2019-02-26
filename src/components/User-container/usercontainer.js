@@ -14,19 +14,19 @@ import {
 // import placeholderImg from './../../small_852.jpg';
 
 
-function oldtoDataURL(url, callback) {
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function () {
-        var reader = new FileReader();
-        reader.onloadend = function () {
-            callback(reader.result);
-        }
-        reader.readAsDataURL(xhr.response);
-    };
-    xhr.open('GET', url);
-    xhr.responseType = 'blob';
-    xhr.send();
-}
+// function oldtoDataURL(url, callback) {
+//     var xhr = new XMLHttpRequest();
+//     xhr.onload = function () {
+//         var reader = new FileReader();
+//         reader.onloadend = function () {
+//             callback(reader.result);
+//         }
+//         reader.readAsDataURL(xhr.response);
+//     };
+//     xhr.open('GET', url);
+//     xhr.responseType = 'blob';
+//     xhr.send();
+// }
 
 
 class UserContainer extends Component {
@@ -87,7 +87,7 @@ class UserContainer extends Component {
     }
 
     onSubmit() {
-        const astate = this;
+        //const astate = this;
         // this.toDataURL(this.state.pictures[0], function(dataUrl) {
         //   console.log('RESULT:', dataUrl);
         //   astate.setState({
@@ -111,7 +111,7 @@ class UserContainer extends Component {
     }
 
     render() {
-        const { open } = this.state;
+        //const { open } = this.state;
         return (
 
 
