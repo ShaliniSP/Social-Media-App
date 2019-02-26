@@ -36,6 +36,7 @@ class LoginComp extends Component {
         password: sha1(this.state.password),
         },(resp) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
           //console.log();
           // if(resp["message"] == "Error: Wrong Email or Password" || resp["message"] == "Error: Invalid"){
           //   alert("Wrong username or password.")
@@ -47,6 +48,9 @@ class LoginComp extends Component {
 =======
           if(resp["message"] === "Valid sign in"){
 >>>>>>> login,signup,upload
+=======
+          if(resp["message"] === "Valid sign in"){
+>>>>>>> 5ba59d08cfa801caf7247aa132abce2ce19a2e0e
             alert("Successfully logged in.")
           }
           if(resp["message"] === "Error: Invalid"){
