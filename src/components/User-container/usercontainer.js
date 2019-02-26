@@ -39,6 +39,11 @@ class UserContainer extends Component {
     }
 
     componentDidMount() {
+        if (this.props.user) {
+            this.setState({
+                uname: this.props.user.username,
+            });
+        }
 
         postDataService.getAllCats(cats => {
             console.log(cats);
