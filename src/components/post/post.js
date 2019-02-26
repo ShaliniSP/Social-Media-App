@@ -66,7 +66,7 @@ class Post extends Component {
                     <Card.Img variant="top" 
                         src = {
                             this.state.post.imgB64.length > 100 ? this.state.post.imgB64 : placeholderImg
-                        }>
+                    }>
                     </Card.Img>
 
                     <Card.Body>
