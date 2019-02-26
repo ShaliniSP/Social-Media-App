@@ -179,13 +179,15 @@ class UserContainer extends Component {
                                     </Form.Text> */}
                                     <Dropdown>
                                         <Dropdown.Toggle variant="info" id="dropdown-basic">
-                                            Categories
+                                            {this.state.category.length===0?"Categories":this.state.category}
                         </Dropdown.Toggle>
 
                                         <Dropdown.Menu>
                                             {
                                                 Object.keys(this.state.cats)
-                                                    .map(cat => <Dropdown.Item key={`categ${cat}`} >{cat}</Dropdown.Item>)
+                                                    .map(cat => <Dropdown.Item key={`categ${cat}`} onClick={() => this.setState({
+                                                        category: cat,
+                                                    })}>{cat}</Dropdown.Item>)
                                             }
                                         </Dropdown.Menu>
                                     </Dropdown>
