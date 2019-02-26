@@ -18,8 +18,8 @@
     border-color: white;
     color: #17a2b8;
     font-size: 40px;
-    margin: 0%;
-    padding-left: 0.5em;
+    margin-right: 0em;
+    padding-left: 0em;
     padding-right: 0.5em;   
     padding-bottom: 0em;
     padding-top: 0em; 
@@ -41,6 +41,7 @@
     background-color: red;
     border-color: red;
     margin-top:5px;
+    border-radius: 50%;
 }
 
 .delbut:hover{
@@ -53,4 +54,8 @@
 .card {
     border: 2px solid darkgray;
     margin: 0px;
+}
+.img {
+    padding-left:10px;
+    padding-right: 10px;
 }

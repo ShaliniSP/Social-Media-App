@@ -151,9 +151,9 @@ class UserContainer extends Component {
                                 <ImageUploader
                                     className="upload-img"
                                     withIcon={true}
-                                    buttonText='Choose image'
+                                    buttonText='Upload Image'
                                     onChange={this.onDrop}
-                                    imgExtension={['.jpg', '.gif', '.png', '.gif']}
+                                    imgExtension={['.jpg', '.gif', '.png']}
                                     maxFileSize={5242880}
                                 />
                             </div>
