@@ -22,8 +22,8 @@ mongoose.connect(config.db, { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
 
 const app = express();
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+app.use(express.json({ limit: '50mb', }));
 app.use(cors());
 
 // log requests to console
