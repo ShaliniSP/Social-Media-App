@@ -30,16 +30,22 @@ class SignupComp extends Component {
     }
 
     onSubmit() {
-        const { show } = this.state;
-        console.log(this.state);
-        console.log(sha1(this.state.password));
         postDataService.signup({
           username: this.state.uname,
           password: sha1(this.state.password),
           },(resp) => {
             console.log(resp);
+            if(resp["message"] === "SignedUp Successfully"){
+              alert("Successfully signed up.")
+            }
+            if(resp["message"] === "Username or Password cannot be empty."){
+              alert("Please fill all fields.")
+            }
+            else{
+              alert(resp["message"])
+            }
+            document.cookie = 'token=' + resp.token;
           })
-          this.setState({ show: !show })
         }
 
     onChangeUname(event) {

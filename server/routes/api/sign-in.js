@@ -230,7 +230,10 @@ module.exports = (app) => {
             } = req.body;
 
             if (!username || !password) {
-                return res.status(500).send({});
+
+                return res.status(500).send({
+                  message: 'Username or Password cannot be empty.',
+                });
             }
 
             // Checking if the password is an SHA1 string
@@ -238,16 +241,22 @@ module.exports = (app) => {
 
             if (!sha1RegExp.test(password)) {
                 console.log('SHA1 failed');
-                return res.status(400).send({});
+                return res.status(400).send({
+                  message: 'SHA1 failed',
+                });
             }
 
             User.find({ username }, (err, user) => {
                 if (err) {
-                    return res.status(500).send({});
+                    return res.status(500).send({
+                      message: 'Error: Server Error',
+                    });
                 }
 
                 if (user.length !== 0) {
-                    return res.status(400).send({});
+                    return res.status(400).send({
+                      message: 'Error: Bad request',
+                    });
                 }
 
                 const newUser = new User();
@@ -258,9 +267,13 @@ module.exports = (app) => {
                 newUser.save((error, newUser) => {
                     if (error) {
                         console.log(error, newUser);
-                        return res.status(400).send({});
+                        return res.status(400).send({
+                          message: 'Error: Bad request',
+                        });
                     }
-                    return res.status(201).send({});
+                    return res.status(201).send({
+                      message: 'SignedUp Successfully',
+                    });
                 });
             });
         })

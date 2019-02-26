@@ -29,23 +29,16 @@ class LoginComp extends Component {
   }
 
   onSubmit() {
-      console.log(this.state);
-      console.log(sha1(this.state.password));
+      //console.log(this.state);
+      //console.log(sha1(this.state.password));
       postDataService.login({
         username: this.state.uname,
         password: sha1(this.state.password),
         },(resp) => {
-          //console.log();
-          // if(resp["message"] == "Error: Wrong Email or Password" || resp["message"] == "Error: Invalid"){
-          //   alert("Wrong username or password.")
-          // }
-          if(resp["message"] == "Valid sign in"){
-            this.setState({
-              show: false,
-            });
+          if(resp["message"] === "Valid sign in"){
             alert("Successfully logged in.")
           }
-          if(resp["message"] == "Error: Invalid"){
+          if(resp["message"] === "Error: Invalid"){
             alert("Please enter correct username.")
           }
           else{
