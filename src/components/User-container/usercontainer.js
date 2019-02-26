@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import './usercontainer.css';
 import ImageUploader from 'react-images-upload';
 import postDataService from './../../dataservice/posts-service.js';
-// import Post from './../post/post.js';
 
 import {
     Form,
@@ -48,7 +47,6 @@ class UserContainer extends Component {
 
     toDataURL(url, callback) {
             var fileToLoad = url;
-            //console.log(url);
             var fileReader = new FileReader();
             fileReader.onload = function(fileLoadedEvent)
             {
@@ -73,13 +71,6 @@ class UserContainer extends Component {
     }
 
     onSubmit() {
-      // const astate = this;
-      // this.toDataURL(this.state.pictures[0], function(dataUrl) {
-      //   console.log('RESULT:', dataUrl);
-      //   astate.setState({
-      //       image: dataUrl,
-      //   });
-      // })
       this.setState({ open: !this.state.open })
       const payload = {
         actId: Math.floor(Math.random() * 100000 % 10000),
@@ -89,9 +80,7 @@ class UserContainer extends Component {
         categoryName: this.state.category,
         imgB64: this.state.image ,
         };
-    //   const timestampnow = Date.now();
-      //Date.format(timestampnow, 'DD/MM/YYYY:ss-mm-HH');
-      //console.log(new Intl.DateTimeFormat('en-US', {day: '2-digit', month: '2-digit',year: 'numeric',second: '2-digit',minute: '2-digit', hour: '2-digit'}).format(timestampnow));
+
       postDataService.uploadPost(payload,(resp) => {
           console.log(resp);
         })
