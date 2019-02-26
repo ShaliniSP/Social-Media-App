@@ -16,11 +16,13 @@ class AppContainer extends Component {
         this.uploadPost = this.uploadPost.bind(this);
         this.loginButt = this.loginButt.bind(this);
         this.modalClose = this.modalClose.bind(this);
+        this.setUser = this.setUser.bind(this);
 
         this.state = {
             tabbarKey: 1,
             showPostView: true,
             modalState: true,
+            user: undefined,
         }
     }
 
@@ -46,6 +48,14 @@ class AppContainer extends Component {
         });
     }
 
+    setUser(userObj) {
+        console.log(userObj);
+        return this.setState({
+            user: userObj,
+            modalState: false,
+        });
+    }
+
     render() {
         return (
             <div>
@@ -56,8 +66,12 @@ class AppContainer extends Component {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto"></Nav>
                         <Nav>
-                            <Nav.Link href="#login" className="loginbut" onClick = {this.loginButt}>Login</Nav.Link>
-                            <Nav.Link href="#upload" className="uploadbut" onClick = {this.uploadPost}>{this.state.showPostView?'Upload':'Acts'}</Nav.Link>
+                            <Nav.Link href="#login" className="loginbut" onClick = {this.loginButt}>
+                                {this.state.user ? `@${this.state.user.username}` : 'Login'}
+                            </Nav.Link>
+                            <Nav.Link href="#upload" className="uploadbut" onClick = {this.uploadPost}>
+                                {this.state.showPostView?'Upload':'Acts'}
+                            </Nav.Link>
                         </Nav>
 
                     </Navbar.Collapse>
@@ -69,7 +83,12 @@ class AppContainer extends Component {
                         <Col xs={0} md={3}>
                         </Col>
                         <Col xs={12} md={6}>
-                            {this.state.showPostView?<PostsContainer />:<UserContainer />}
+                            {
+                                this.state.showPostView ? 
+                                <PostsContainer />
+                                : 
+                                <UserContainer user={this.state.user} />
+                            }
                         </Col>
                         <Col xs={0} md={3}>
                         </Col>
@@ -79,6 +98,7 @@ class AppContainer extends Component {
                 <LoginAndSignUp 
                     modalState = {this.state.modalState}
                     onModalClose = {this.modalClose}
+                    onLogin = {this.setUser}
                 />
 
             </div>

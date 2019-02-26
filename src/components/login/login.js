@@ -12,53 +12,53 @@ import {
 var sha1 = require('sha1');
 
 class LoginComp extends Component {
-  constructor(props, context) {
-      super(props, context);
+    constructor(props, context) {
+        super(props, context);
 
-      this.onSubmit = this.onSubmit.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
-      this.onChangeUname = this.onChangeUname.bind(this);
+        this.onChangeUname = this.onChangeUname.bind(this);
 
-      this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
 
-      this.state = {
-          show: false,
-          uname: '',
-          password: '',
-      }
-  }
+        this.state = {
+            show: false,
+            uname: '',
+            password: '',
+        }
+    }
 
-  onSubmit() {
+    onSubmit() {
 
-      postDataService.login({
-        username: this.state.uname,
-        password: sha1(this.state.password),
-        },(resp) => {
+        postDataService.login({
+            username: this.state.uname,
+            password: sha1(this.state.password),
+            },
+            (resp) => {
+                if(resp["message"] === "Valid sign in") {
+                    this.props.onLogin({
+                        username: this.state.uname,
+                        token: resp.token,
+                    });
+                    alert("Successfully logged in.");
+                }
 
-          if(resp["message"] === "Valid sign in")
-          {
-            alert("Successfully logged in.")
-          }
+                if(resp["message"] === "Error: Invalid") {
+                    alert("Please enter correct username.")
+                }
+                else {
+                    alert(resp["message"])
+                }
+                document.cookie = 'token=' + resp.token;
+            });
+    }
 
-          if(resp["message"] === "Error: Invalid"){
-            alert("Please enter correct username.")
-          }
-          else{
-            alert(resp["message"])
-          }
-          document.cookie = 'token=' + resp.token;
+    onChangeUname(event) {
 
-        })
-      }
-
-
-
-  onChangeUname(event) {
-
-      return this.setState({
-          uname: event.currentTarget.value,
-      });
-  }
+        return this.setState({
+            uname: event.currentTarget.value,
+        });
+    }
 
     onChangePassword(event) {
 

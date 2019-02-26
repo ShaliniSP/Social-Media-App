@@ -43,7 +43,7 @@ class LoginAndSignUp extends Component {
                     <Modal.Body>
                         <Tabs defaultActiveKey="home" id="uncontrolled-tab-example">
                             <Tab eventKey="home" title="Login">
-                                <LoginComp />
+                                <LoginComp onLogin={this.props.onLogin} />
                             </Tab>
                             <Tab eventKey="profile" title="Signup">
                                 <SignupComp />
