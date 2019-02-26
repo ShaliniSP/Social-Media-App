@@ -36,7 +36,7 @@ class LoginAndSignUp extends Component {
                 <Modal show={this.state.show} onHide={this.handleClose} centered>
                     <Modal.Header closeButton>
                         <Modal.Title>
-                            Login Or Signup on Slacts
+                            Login or Signup on SlActs
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>

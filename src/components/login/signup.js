@@ -77,9 +77,9 @@ class SignupComp extends Component {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
                 </Form.Group>
-                <Button variant="info" block onClick={this.onSubmit} className='form'>
+                <center><Button variant="info" block onClick={this.onSubmit} className='submitbutton'>
                     Submit
-                </Button>
+                </Button></center>
             </Form>
         );
     }
