@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 
 import './usercontainer.css';
+import './../PostContainer/post-container.css';
+
 import ImageUploader from 'react-images-upload';
+import { Dropdown, } from 'react-bootstrap';
+
 import postDataService from './../../dataservice/posts-service.js';
 
 import {
@@ -21,6 +25,7 @@ class UserContainer extends Component {
             actid: '',
             uname: 'san',
             posts: [],
+            cats: {},
             pictures: [],
             image: '',
             capton: '',
@@ -31,6 +36,17 @@ class UserContainer extends Component {
         this.onChangeCategory = this.onChangeCategory.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.toDataURL = this.toDataURL.bind(this);
+    }
+
+    componentDidMount() {
+
+        postDataService.getAllCats(cats => {
+            console.log(cats);
+
+            return this.setState({
+                cats,
+            });
+        });
     }
 
     onDrop(picture) {
@@ -96,6 +112,10 @@ class UserContainer extends Component {
         })
 
     }
+    allCats() {
+        return Object.keys(this.state.cats).map((cat => <p key={`categ-${cat}`}>{cat}</p>));
+        // return console.log(Object.keys(this.state.cats));
+    }
 
     render() {
         //const { open } = this.state;
@@ -152,11 +172,25 @@ class UserContainer extends Component {
                                 </Form.Group>
 
                                 <Form.Group controlId="formBasicPassword">
-                                    <Form.Label>Enter Category</Form.Label>
-                                    <Form.Control type="text" value={this.state.category} onChange={this.onChangeCategory} />
+                                    <Form.Label>Select Category</Form.Label>
+                                    {/* <Form.Control type="text" value={this.state.category} onChange={this.onChangeCategory} />
                                     <Form.Text className="text-muted">
                                         Ex. Animals
-                                    </Form.Text>
+                                    </Form.Text> */}
+                                    <Dropdown>
+                                        <Dropdown.Toggle variant="info" id="dropdown-basic">
+                                            {this.state.category.length===0?"Categories":this.state.category}
+                        </Dropdown.Toggle>
+
+                                        <Dropdown.Menu>
+                                            {
+                                                Object.keys(this.state.cats)
+                                                    .map(cat => <Dropdown.Item key={`categ${cat}`} onClick={() => this.setState({
+                                                        category: cat,
+                                                    })}>{cat}</Dropdown.Item>)
+                                            }
+                                        </Dropdown.Menu>
+                                    </Dropdown>
                                 </Form.Group>
                                 <center>
                                     <Button variant="info" block onClick={this.onSubmit} className="lastupload">

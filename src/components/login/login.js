@@ -82,9 +82,9 @@ class LoginComp extends Component {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
                 </Form.Group>
-                <Button variant="info" block onClick={this.onSubmit}>
+                <center><Button variant="info" block onClick={this.onSubmit} className="submitbutton">
                     Login
-                </Button>
+                </Button></center>
             </Form>
         );
     }
