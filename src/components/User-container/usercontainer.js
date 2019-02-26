@@ -13,6 +13,7 @@ import {
 } from 'react-bootstrap';
 // import placeholderImg from './../../small_852.jpg';
 
+<<<<<<< HEAD
 
 // function oldtoDataURL(url, callback) {
 //   var xhr = new XMLHttpRequest();
@@ -29,6 +30,8 @@ import {
 // }
 
 
+=======
+>>>>>>> login,signup,upload
 class UserContainer extends Component {
     constructor(props, context) {
         super(props, context);
@@ -46,7 +49,6 @@ class UserContainer extends Component {
         this.onDrop = this.onDrop.bind(this);
         this.onChangeCaption = this.onChangeCaption.bind(this);
         this.onChangeCategory = this.onChangeCategory.bind(this);
-        this.onChangeActid = this.onChangeActid.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.toDataURL = this.toDataURL.bind(this);
     }
@@ -89,15 +91,8 @@ class UserContainer extends Component {
         });
     }
 
-    onChangeActid(event) {
-
-
-        return this.setState({
-            actid: event.currentTarget.value,
-        });
-    }
-
     onSubmit() {
+<<<<<<< HEAD
       // const astate = this;
       // this.toDataURL(this.state.pictures[0], function(dataUrl) {
       //   console.log('RESULT:', dataUrl);
@@ -106,6 +101,10 @@ class UserContainer extends Component {
       //   });
       // })
       this.setState({ open: !this.state.open })
+=======
+      const { open } = this.state;
+      this.setState({ open: !open })
+>>>>>>> login,signup,upload
       const payload = {
         actId: Math.floor(Math.random() * 100000 % 10000),
         username: this.state.uname,
@@ -113,7 +112,6 @@ class UserContainer extends Component {
         caption: this.state.caption,
         categoryName: this.state.category,
         imgB64: this.state.image ,
-        //imgB64: 'TWFuIGlzIGRpc3Rpbmd1aXNoZWQsIG5vdCBvb',
         };
     //   const timestampnow = Date.now();
       //Date.format(timestampnow, 'DD/MM/YYYY:ss-mm-HH');
@@ -202,13 +200,6 @@ class UserContainer extends Component {
                         </Form.Text>
                     </Form.Group>
 
-                    <Form.Group controlId="formBasicPassword">
-                        <Form.Label>Enter ActId</Form.Label>
-                        <Form.Control type="text" value={this.state.actid} onChange={this.onChangeActid}/>
-                        <Form.Text className="text-muted">
-                            Ex. 25
-                        </Form.Text>
-                    </Form.Group>
                     <Button variant="info" block onClick={this.onSubmit}>
                         Upload
                     </Button>
