@@ -2,7 +2,6 @@ import React, { Component, } from 'react';
 import './post-container.css';
 
 import { Dropdown, } from 'react-bootstrap';
-import { DropDownList } from '@progress/kendo-react-dropdowns';
 
 import postDataService from './../../dataservice/posts-service.js';
 import Post from './../post/post.js';
