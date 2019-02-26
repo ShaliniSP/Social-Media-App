@@ -13,25 +13,6 @@ import {
 } from 'react-bootstrap';
 // import placeholderImg from './../../small_852.jpg';
 
-<<<<<<< HEAD
-
-// function oldtoDataURL(url, callback) {
-//   var xhr = new XMLHttpRequest();
-//   xhr.onload = function() {
-//     var reader = new FileReader();
-//     reader.onloadend = function() {
-//       callback(reader.result);
-//     }
-//     reader.readAsDataURL(xhr.response);
-//   };
-//   xhr.open('GET', url);
-//   xhr.responseType = 'blob';
-//   xhr.send();
-// }
-
-
-=======
->>>>>>> login,signup,upload
 class UserContainer extends Component {
     constructor(props, context) {
         super(props, context);
@@ -92,7 +73,6 @@ class UserContainer extends Component {
     }
 
     onSubmit() {
-<<<<<<< HEAD
       // const astate = this;
       // this.toDataURL(this.state.pictures[0], function(dataUrl) {
       //   console.log('RESULT:', dataUrl);
@@ -101,10 +81,6 @@ class UserContainer extends Component {
       //   });
       // })
       this.setState({ open: !this.state.open })
-=======
-      const { open } = this.state;
-      this.setState({ open: !open })
->>>>>>> login,signup,upload
       const payload = {
         actId: Math.floor(Math.random() * 100000 % 10000),
         username: this.state.uname,
