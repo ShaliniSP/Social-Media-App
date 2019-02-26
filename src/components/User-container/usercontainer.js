@@ -37,7 +37,8 @@ class UserContainer extends Component {
 
         this.state = {
             open: true,
-            uname: '' ,
+            actid: '',
+            uname: 'san' ,
             posts: [],
             pictures: [],
             image: '',
@@ -47,6 +48,7 @@ class UserContainer extends Component {
         this.onDrop = this.onDrop.bind(this);
         this.onChangeCaption = this.onChangeCaption.bind(this);
         this.onChangeCategory = this.onChangeCategory.bind(this);
+        this.onChangeActid = this.onChangeActid.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.toDataURL = this.toDataURL.bind(this);
     }
@@ -89,6 +91,14 @@ class UserContainer extends Component {
         });
     }
 
+    onChangeActid(event) {
+
+
+        return this.setState({
+            actid: event.currentTarget.value,
+        });
+    }
+
     onSubmit() {
       const { open } = this.state;
       // this.toDataURL(this.state.pictures[0], function(dataUrl) {
@@ -98,22 +108,25 @@ class UserContainer extends Component {
       //   });
       // })
       this.setState({ open: !open })
-
-      const timestampnow = Date.now();
-      //console.log(new Intl.DateTimeFormat('en-US', {day: '2-digit', month: '2-digit',year: 'numeric',second: '2-digit',minute: '2-digit', hour: '2-digit'}).format(timestampnow));
-      postDataService.uploadPost({
-        //actid: ,
+      const payload = {
+        actId: Math.floor(Math.random() * 100000 % 10000),
         username: this.state.uname,
-        timestamp: timestampnow,
+        timestamp: '22-78-7876:39:17:75',
         caption: this.state.caption,
         categoryName: this.state.category,
         imgB64: this.state.image ,
-        },(resp) => {
+        //imgB64: 'TWFuIGlzIGRpc3Rpbmd1aXNoZWQsIG5vdCBvb',
+        };
+      const timestampnow = Date.now();
+      //Date.format(timestampnow, 'DD/MM/YYYY:ss-mm-HH');
+      //console.log(new Intl.DateTimeFormat('en-US', {day: '2-digit', month: '2-digit',year: 'numeric',second: '2-digit',minute: '2-digit', hour: '2-digit'}).format(timestampnow));
+      postDataService.uploadPost(payload,(resp) => {
           console.log(resp);
         })
         alert("uploaded");
          this.setState({
             open: false,
+            actid: '',
             uname: '' ,
             posts: [],
             pictures: [],
@@ -188,6 +201,14 @@ class UserContainer extends Component {
                         <Form.Control type="text" value={this.state.category} onChange={this.onChangeCategory}/>
                         <Form.Text className="text-muted">
                             Ex. Animals
+                        </Form.Text>
+                    </Form.Group>
+
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Enter ActId</Form.Label>
+                        <Form.Control type="text" value={this.state.actid} onChange={this.onChangeActid}/>
+                        <Form.Text className="text-muted">
+                            Ex. 25
                         </Form.Text>
                     </Form.Group>
                     <Button variant="info" block onClick={this.onSubmit}>

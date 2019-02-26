@@ -41,6 +41,7 @@ module.exports = (app) => {
                 });
             } else {
                 if (posts.length !== 0) {
+                    console.log('Failing here');
                     return res.status(400).send({
                         message: 'Bad Request',
                     });
