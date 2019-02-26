@@ -22,25 +22,37 @@ class LoginComp extends Component {
       this.onChangePassword = this.onChangePassword.bind(this);
 
       this.state = {
-          show: true,
+          show: false,
           uname: '',
           password: '',
       }
   }
 
   onSubmit() {
-      const astate = this;
       console.log(this.state);
       console.log(sha1(this.state.password));
-      postDataService.signin({
+      postDataService.login({
         username: this.state.uname,
         password: sha1(this.state.password),
         },(resp) => {
-          console.log(resp);
+          //console.log();
+          // if(resp["message"] == "Error: Wrong Email or Password" || resp["message"] == "Error: Invalid"){
+          //   alert("Wrong username or password.")
+          // }
+          if(resp["message"] == "Valid sign in"){
+            this.setState({
+              show: false,
+            });
+            alert("Successfully logged in.")
+          }
+          if(resp["message"] == "Error: Invalid"){
+            alert("Please enter correct username.")
+          }
+          else{
+            alert(resp["message"])
+          }
           document.cookie = 'token=' + resp.token;
-          return astate.setState({
-            show: false,
-          });
+
         })
       }
 

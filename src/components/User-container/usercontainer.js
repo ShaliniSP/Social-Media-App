@@ -34,8 +34,9 @@ class UserContainer extends Component {
         super(props, context);
 
         this.state = {
-            open: false,
-            uname: '' ,
+            open: true,
+            actid: '',
+            uname: 'san' ,
             posts: [],
             pictures: [],
             image: '',
@@ -45,6 +46,7 @@ class UserContainer extends Component {
         this.onDrop = this.onDrop.bind(this);
         this.onChangeCaption = this.onChangeCaption.bind(this);
         this.onChangeCategory = this.onChangeCategory.bind(this);
+        this.onChangeActid = this.onChangeActid.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.toDataURL = this.toDataURL.bind(this);
     }
@@ -63,7 +65,7 @@ class UserContainer extends Component {
 
     toDataURL(url, callback) {
             var fileToLoad = url;
-            console.log(url);
+            //console.log(url);
             var fileReader = new FileReader();
             fileReader.onload = function(fileLoadedEvent)
             {
@@ -87,6 +89,14 @@ class UserContainer extends Component {
         });
     }
 
+    onChangeActid(event) {
+
+
+        return this.setState({
+            actid: event.currentTarget.value,
+        });
+    }
+
     onSubmit() {
       // const astate = this;
       // this.toDataURL(this.state.pictures[0], function(dataUrl) {
@@ -95,19 +105,32 @@ class UserContainer extends Component {
       //       image: dataUrl,
       //   });
       // })
-
-      const timestampnow = Date.now();
-      console.log(new Intl.DateTimeFormat('en-US', {day: '2-digit', month: '2-digit',year: 'numeric',second: '2-digit',minute: '2-digit', hour: '2-digit'}).format(timestampnow));
-      postDataService.uploadPost({
-        //actid: ,
+      this.setState({ open: !open })
+      const payload = {
+        actId: Math.floor(Math.random() * 100000 % 10000),
         username: this.state.uname,
-        timestamp: '15-02-2019:56-45-07',
+        timestamp: '22-78-7876:39:17:75',
         caption: this.state.caption,
         categoryName: this.state.category,
-        imgB64: this.state.image,
-        actId: Math.floor(Math.random()*1000 + 1),
-        },(resp) => {
+        imgB64: this.state.image ,
+        //imgB64: 'TWFuIGlzIGRpc3Rpbmd1aXNoZWQsIG5vdCBvb',
+        };
+      const timestampnow = Date.now();
+      //Date.format(timestampnow, 'DD/MM/YYYY:ss-mm-HH');
+      //console.log(new Intl.DateTimeFormat('en-US', {day: '2-digit', month: '2-digit',year: 'numeric',second: '2-digit',minute: '2-digit', hour: '2-digit'}).format(timestampnow));
+      postDataService.uploadPost(payload,(resp) => {
           console.log(resp);
+        })
+        alert("uploaded");
+         this.setState({
+            open: false,
+            actid: '',
+            uname: '' ,
+            posts: [],
+            pictures: [],
+            image: '',
+            capton: '',
+            category: '',
         })
 
     }
@@ -118,7 +141,6 @@ class UserContainer extends Component {
 
 
           <div className="UserContainer">
-          <p> </p>
           <>
 
 
@@ -177,6 +199,14 @@ class UserContainer extends Component {
                         <Form.Control type="text" value={this.state.category} onChange={this.onChangeCategory}/>
                         <Form.Text className="text-muted">
                             Ex. Animals
+                        </Form.Text>
+                    </Form.Group>
+
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Enter ActId</Form.Label>
+                        <Form.Control type="text" value={this.state.actid} onChange={this.onChangeActid}/>
+                        <Form.Text className="text-muted">
+                            Ex. 25
                         </Form.Text>
                     </Form.Group>
                     <Button variant="info" block onClick={this.onSubmit}>
