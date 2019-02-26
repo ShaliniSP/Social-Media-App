@@ -73,19 +73,21 @@ class PostsContainer extends Component {
         return (
             <div className="postsContainer">
                 <div>
-                    <center><Dropdown>
-                        <Dropdown.Toggle variant="info" id="dropdown-basic">
-                            Categories
-                        </Dropdown.Toggle>
+                    <center>
+                        <Dropdown>
+                            <Dropdown.Toggle variant="info" id="dropdown-basic">
+                                Categories
+                            </Dropdown.Toggle>
 
-                        <Dropdown.Menu>
-                            <Dropdown.Item key={`categ${'allposts'}`} onClick={() => this.setState({ filter: false })}>{'All Posts'}</Dropdown.Item>
-                            {
-                                Object.keys(this.state.cats)
-                                    .map(cat => <Dropdown.Item key={`categ${cat}`} onClick={() => this.setState({ filter: true, filterCat: cat })} >{cat}</Dropdown.Item>)
-                            }
-                        </Dropdown.Menu>
-                    </Dropdown></center>
+                            <Dropdown.Menu>
+                                <Dropdown.Item key={`categ${'allposts'}`} onClick={() => this.setState({ filter: false })}>{'All Posts'}</Dropdown.Item>
+                                {
+                                    Object.keys(this.state.cats)
+                                        .map(cat => <Dropdown.Item key={`categ${cat}`} onClick={() => this.setState({ filter: true, filterCat: cat })} >{cat}</Dropdown.Item>)
+                                }
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </center>
 
                 </div>
                 <div>

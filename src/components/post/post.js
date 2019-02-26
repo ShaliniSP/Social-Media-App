@@ -63,7 +63,11 @@ class Post extends Component {
                         <span className="actidhead"><i>{'<#' + this.state.post.actId+'> '+this.state.post.category}</i></span>
 
                     </Card.Header>
-                    <Card.Img variant="top" src={placeholderImg}></Card.Img>
+                    <Card.Img variant="top" 
+                        src = {
+                            this.state.post.imgB64.length > 100 ? this.state.post.imgB64 : placeholderImg
+                    }>
+                    </Card.Img>
 
                     <Card.Body>
                         <span><Button className="upvotebut" onClick={this.upvoteFun}><b>^</b></Button></span>
