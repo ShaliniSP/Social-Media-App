@@ -70,7 +70,7 @@ class SignupComp extends Component {
                     <Form.Control type="text" placeholder="Enter User Name" value={this.state.uname} onChange={this.onChangeUname}/>
                     <Form.Text className="text-muted">
                         Ex. John
-                </Form.Text>
+                    </Form.Text>
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPasswordSignup">
