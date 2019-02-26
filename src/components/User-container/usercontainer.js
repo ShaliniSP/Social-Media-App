@@ -105,7 +105,7 @@ class UserContainer extends Component {
       //       image: dataUrl,
       //   });
       // })
-      this.setState({ open: !open })
+      this.setState({ open: !this.state.open })
       const payload = {
         actId: Math.floor(Math.random() * 100000 % 10000),
         username: this.state.uname,
@@ -115,7 +115,7 @@ class UserContainer extends Component {
         imgB64: this.state.image ,
         //imgB64: 'TWFuIGlzIGRpc3Rpbmd1aXNoZWQsIG5vdCBvb',
         };
-      const timestampnow = Date.now();
+    //   const timestampnow = Date.now();
       //Date.format(timestampnow, 'DD/MM/YYYY:ss-mm-HH');
       //console.log(new Intl.DateTimeFormat('en-US', {day: '2-digit', month: '2-digit',year: 'numeric',second: '2-digit',minute: '2-digit', hour: '2-digit'}).format(timestampnow));
       postDataService.uploadPost(payload,(resp) => {

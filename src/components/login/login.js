@@ -39,13 +39,13 @@ class LoginComp extends Component {
           // if(resp["message"] == "Error: Wrong Email or Password" || resp["message"] == "Error: Invalid"){
           //   alert("Wrong username or password.")
           // }
-          if(resp["message"] == "Valid sign in"){
+          if(resp["message"] === "Valid sign in"){
             this.setState({
               show: false,
             });
             alert("Successfully logged in.")
           }
-          if(resp["message"] == "Error: Invalid"){
+          if(resp["message"] === "Error: Invalid"){
             alert("Please enter correct username.")
           }
           else{

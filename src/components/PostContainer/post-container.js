@@ -20,7 +20,7 @@ class PostsContainer extends Component {
         this.state = {
             posts: [],
             cats: {},
-            filter: true,
+            filter: false,
             filterCat: 'category_xyz',
         };
     }
