@@ -10,7 +10,7 @@ import {
     Card,
     Collapse,
 } from 'react-bootstrap';
-import placeholderImg from './../../small_852.jpg';
+// import placeholderImg from './../../small_852.jpg';
 
 class UserContainer extends Component {
     constructor(props, context) {
