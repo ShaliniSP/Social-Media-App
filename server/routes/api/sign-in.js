@@ -224,7 +224,7 @@ module.exports = (app) => {
 
     //app.route('/api/v1/users')
         app.post('/api/v1/users', (req, res, next) => {
-            const {
+            let {
                 username,
                 password,
             } = req.body;
@@ -236,6 +236,8 @@ module.exports = (app) => {
                 });
             }
 
+            username = username.toLowerCase().trim();
+            
             // Checking if the password is an SHA1 string
             const sha1RegExp = new RegExp('^[0-9a-f]{40}$');
 
