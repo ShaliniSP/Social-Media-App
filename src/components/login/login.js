@@ -39,8 +39,7 @@ class LoginComp extends Component {
           {
             alert("Successfully logged in.")
           }
-
-          if(resp["message"] === "Error: Invalid"){
+          else if(resp["message"] === "Error: Invalid"){
             alert("Please enter correct username.")
           }
           else{
