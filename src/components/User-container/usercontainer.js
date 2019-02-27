@@ -155,6 +155,9 @@ class UserContainer extends Component {
                 <Collapse in={this.state.open}>
                     <Card>
                         <Card.Header>Post</Card.Header>
+                        <Alert key={'1fdf'} show={this.state.alertShow} variant={this.state.alertType}>
+                          {this.state.alertText}
+                        </Alert>
                         {this.state.pictures.length !== 0 ?
                             <Card.Img src={this.state.image} className="uploaded"></Card.Img>
                             :
@@ -217,9 +220,7 @@ class UserContainer extends Component {
                                 >
                                 {isLoading ? 'Uploading…' : 'Upload Act'}
                                 </Button>
-                                <Alert key={'1fdf'} show={this.state.alertShow} variant={this.state.alertType}>
-                                  {this.state.alertText}
-                                </Alert>
+
                                 </center>
 
                             </Form>

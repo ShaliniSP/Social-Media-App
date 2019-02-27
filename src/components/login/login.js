@@ -68,7 +68,7 @@ class LoginComp extends Component {
                 else {
                     //alert(resp["message"])
                     this.setState({
-                      alertText : 'ERROR try again',
+                      alertText : 'Enter correct username.',
                       alertShow: true,
                       alertType: 'danger',
                       isLoading: false,
@@ -96,6 +96,9 @@ class LoginComp extends Component {
       const { isLoading } = this.state;
         return (
             <Form className='form'>
+                <Alert key={'1fdf'} show={this.state.alertShow} variant={this.state.alertType}>
+                  {this.state.alertText}
+                </Alert>
                 <Form.Group controlId="formBasicEmailLogin">
                 <Form.Label>User Name</Form.Label>
                 <Form.Control type="text" placeholder="Enter User Name" value={this.state.uname} onChange={this.onChangeUname}/>
@@ -116,9 +119,7 @@ class LoginComp extends Component {
                 >
                 {isLoading ? 'Logging in…' : 'Login'}
                 </Button>
-                <Alert key={'1fdf'} show={this.state.alertShow} variant={this.state.alertType}>
-                  {this.state.alertText}
-                </Alert>
+
                 </center>
             </Form>
         );

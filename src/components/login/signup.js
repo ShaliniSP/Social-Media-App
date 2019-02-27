@@ -63,7 +63,7 @@ class SignupComp extends Component {
             else{
               //alert(resp["message"])
               this.setState({
-                alertText : 'Internal error.Please try again.',
+                alertText : 'Username aldready exists.',
                 alertShow: true,
                 alertType: 'danger',
                 isLoading: false,
@@ -91,6 +91,9 @@ class SignupComp extends Component {
         const { isLoading } = this.state;
         return (
             <Form className='form'>
+                <Alert key={'1fdf'} show={this.state.alertShow} variant={this.state.alertType}>
+                  {this.state.alertText}
+                </Alert>
                 <Form.Group controlId="formBasicEmailSignup">
                     <Form.Label>User Name</Form.Label>
                     <Form.Control type="text" placeholder="Enter User Name" value={this.state.uname} onChange={this.onChangeUname}/>
@@ -111,9 +114,7 @@ class SignupComp extends Component {
                   >
                   {isLoading ? 'Signing in…' : 'Signup'}
                   </Button>
-                <Alert key={'1fdf'} show={this.state.alertShow} variant={this.state.alertType}>
-                  {this.state.alertText}
-                </Alert>
+
                 </center>
             </Form>
         );
