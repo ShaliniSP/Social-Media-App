@@ -7,6 +7,7 @@ import postDataService from './../../dataservice/posts-service.js'
 import {
     Form,
     Button,
+    Alert,
 } from 'react-bootstrap';
 
 var sha1 = require('sha1');
@@ -19,50 +20,22 @@ class LoginComp extends Component {
 
         this.onChangeUname = this.onChangeUname.bind(this);
 
-<<<<<<< HEAD
         this.onChangePassword = this.onChangePassword.bind(this);
-=======
-      this.onChangePassword = this.onChangePassword.bind(this);
 
-      this.state = {
-          show: false,
-          uname: '',
-          password: '',
-      }
-  }
-
-  onSubmit() {
-
-      postDataService.login({
-        username: this.state.uname,
-        password: sha1(this.state.password),
-        },(resp) => {
-
-          if(resp["message"] === "Valid sign in")
-          {
-            alert("Successfully logged in.")
-          }
-          else if(resp["message"] === "Error: Invalid"){
-            alert("Please enter correct username.")
-          }
-          else{
-            alert(resp["message"])
-          }
-          document.cookie = 'token=' + resp.token;
-
-        })
-      }
->>>>>>> alert_fixed
 
         this.state = {
             show: false,
             uname: '',
             password: '',
+            alertText: '',
+            alertType: 'danger',
+            alertShow: false,
+            isLoading: false,
         }
     }
 
     onSubmit() {
-
+        this.setState({ isLoading: true });
         postDataService.login({
             username: this.state.uname,
             password: sha1(this.state.password),
@@ -73,14 +46,33 @@ class LoginComp extends Component {
                         username: this.state.uname,
                         token: resp.token,
                     });
-                    alert("Successfully logged in.");
+                    //alert("Successfully logged in.");
+                    this.setState({
+                        alertText : 'Successfully logged in',
+                        alertShow: true,
+                        alertType: 'success',
+                        isLoading: false,
+                    });
+
                 }
 
-                if(resp["message"] === "Error: Invalid") {
-                    alert("Please enter correct username.")
+                else if(resp["message"] === "Error: Invalid") {
+                    //alert("Please enter correct username.")
+                    this.setState({
+                      alertText : 'Please enter correct username.',
+                      alertShow: true,
+                      alertType: 'danger',
+                      isLoading: false,
+                    });
                 }
                 else {
-                    alert(resp["message"])
+                    //alert(resp["message"])
+                    this.setState({
+                      alertText : 'ERROR try again',
+                      alertShow: true,
+                      alertType: 'danger',
+                      isLoading: false,
+                    });
                 }
                 document.cookie = 'token=' + resp.token;
             });
@@ -101,6 +93,7 @@ class LoginComp extends Component {
     }
 
     render() {
+      const { isLoading } = this.state;
         return (
             <Form className='form'>
                 <Form.Group controlId="formBasicEmailLogin">
@@ -115,9 +108,18 @@ class LoginComp extends Component {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
                 </Form.Group>
-                <center><Button variant="info" block onClick={this.onSubmit} className="submitbutton">
-                    Login
-                </Button></center>
+                <center>
+                <Button
+                variant="info"
+                disabled={isLoading}
+                onClick={!isLoading ? this.onSubmit : null}
+                >
+                {isLoading ? 'Logging in…' : 'Login'}
+                </Button>
+                <Alert key={'1fdf'} show={this.state.alertShow} variant={this.state.alertType}>
+                  {this.state.alertText}
+                </Alert>
+                </center>
             </Form>
         );
     }

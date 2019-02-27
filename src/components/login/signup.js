@@ -8,6 +8,7 @@ import postDataService from './../../dataservice/posts-service.js'
 import {
     Form,
     Button,
+    Alert,
 } from 'react-bootstrap';
 
 var sha1 = require('sha1');
@@ -22,27 +23,51 @@ class SignupComp extends Component {
 
         this.onChangePassword = this.onChangePassword.bind(this);
 
+
         this.state = {
             show: true,
             uname: '',
             password: '',
+            alertText: '',
+            alertType: 'danger',
+            alertShow: false,
+            isLoading: false,
         }
     }
 
     onSubmit() {
+        this.setState({ isLoading: true });
         postDataService.signup({
           username: this.state.uname,
           password: sha1(this.state.password),
           },(resp) => {
             console.log(resp);
             if(resp["message"] === "SignedUp Successfully"){
-              alert("Successfully signed up.")
+              //alert("Successfully signed up.")
+              this.setState({
+                alertText : 'Successfully signed up.',
+                alertShow: true,
+                alertType: 'success',
+                isLoading: false,
+              });
             }
-            if(resp["message"] === "Username or Password cannot be empty."){
-              alert("Please fill all fields.")
+            else if(resp["message"] === "Username or Password cannot be empty."){
+              //alert("Please fill all fields.")
+              this.setState({
+                alertText : 'Please fill all fields.',
+                alertShow: true,
+                alertType: 'danger',
+                isLoading: false,
+              });
             }
             else{
-              alert(resp["message"])
+              //alert(resp["message"])
+              this.setState({
+                alertText : 'Internal error.Please try again.',
+                alertShow: true,
+                alertType: 'danger',
+                isLoading: false,
+              });
             }
             document.cookie = 'token=' + resp.token;
           })
@@ -63,6 +88,7 @@ class SignupComp extends Component {
     }
 
     render() {
+        const { isLoading } = this.state;
         return (
             <Form className='form'>
                 <Form.Group controlId="formBasicEmailSignup">
@@ -77,9 +103,18 @@ class SignupComp extends Component {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
                 </Form.Group>
-                <center><Button variant="info" block onClick={this.onSubmit} className='submitbutton'>
-                    Submit
-                </Button></center>
+                <center>
+                  <Button
+                  variant="info"
+                  disabled={isLoading}
+                  onClick={!isLoading ? this.onSubmit : null}
+                  >
+                  {isLoading ? 'Signing in…' : 'Signup'}
+                  </Button>
+                <Alert key={'1fdf'} show={this.state.alertShow} variant={this.state.alertType}>
+                  {this.state.alertText}
+                </Alert>
+                </center>
             </Form>
         );
     }

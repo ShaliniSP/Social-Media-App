@@ -13,6 +13,7 @@ import {
     Button,
     Card,
     Collapse,
+    Alert,
 } from 'react-bootstrap';
 // import placeholderImg from './../../small_852.jpg';
 
@@ -30,6 +31,10 @@ class UserContainer extends Component {
             image: '',
             capton: '',
             category: '',
+            isLoading: false,
+            alertText: '',
+            alertType: 'success',
+            alertShow: false,
         };
         this.onDrop = this.onDrop.bind(this);
         this.onChangeCaption = this.onChangeCaption.bind(this);
@@ -91,6 +96,7 @@ class UserContainer extends Component {
     }
 
     onSubmit() {
+      this.setState({ isLoading: true });
         this.setState({ open: !this.state.open })
         const payload = {
             actId: Math.floor(Math.random() * 100000 % 10000),
@@ -104,9 +110,15 @@ class UserContainer extends Component {
         postDataService.uploadPost(payload, (resp) => {
             console.log(resp);
         })
-        alert("uploaded");
+        //alert("uploaded");
         this.setState({
-            open: false,
+          alertText : 'Successfully uploaded',
+          alertShow: true,
+          alertType: 'success',
+          isLoading: false,
+        });
+        this.setState({
+            open: true,
             actid: '',
             uname: '',
             posts: [],
@@ -123,7 +135,7 @@ class UserContainer extends Component {
     }
 
     render() {
-        //const { open } = this.state;
+        const { isLoading } = this.state;
         return (
 
 
@@ -198,9 +210,16 @@ class UserContainer extends Component {
                                     </Dropdown>
                                 </Form.Group>
                                 <center>
-                                    <Button variant="info" block onClick={this.onSubmit} className="lastupload">
-                                        Upload Act
-                                    </Button>
+                                <Button
+                                variant="info"
+                                disabled={isLoading}
+                                onClick={!isLoading ? this.onSubmit : null}
+                                >
+                                {isLoading ? 'Uploading…' : 'Upload Act'}
+                                </Button>
+                                <Alert key={'1fdf'} show={this.state.alertShow} variant={this.state.alertType}>
+                                  {this.state.alertText}
+                                </Alert>
                                 </center>
 
                             </Form>
