@@ -19,7 +19,40 @@ class LoginComp extends Component {
 
         this.onChangeUname = this.onChangeUname.bind(this);
 
+<<<<<<< HEAD
         this.onChangePassword = this.onChangePassword.bind(this);
+=======
+      this.onChangePassword = this.onChangePassword.bind(this);
+
+      this.state = {
+          show: false,
+          uname: '',
+          password: '',
+      }
+  }
+
+  onSubmit() {
+
+      postDataService.login({
+        username: this.state.uname,
+        password: sha1(this.state.password),
+        },(resp) => {
+
+          if(resp["message"] === "Valid sign in")
+          {
+            alert("Successfully logged in.")
+          }
+          else if(resp["message"] === "Error: Invalid"){
+            alert("Please enter correct username.")
+          }
+          else{
+            alert(resp["message"])
+          }
+          document.cookie = 'token=' + resp.token;
+
+        })
+      }
+>>>>>>> alert_fixed
 
         this.state = {
             show: false,
