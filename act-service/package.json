@@ -1,8 +1,16 @@
 {
   "name": "act-service",
   "version": "1.0.0",
-  "description": "act microservice for slacts",
+  "description": "",
   "main": "index.js",
+  "dependencies": {
+    "bcrypt": "^3.0.4",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.19",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
